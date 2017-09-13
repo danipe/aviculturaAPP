@@ -3,6 +3,7 @@ platforms/
 plugins/
 resources/
 www/lib
+www/
 *.swp
 *.swo
 *.log
