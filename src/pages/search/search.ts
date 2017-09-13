@@ -3,6 +3,8 @@ import { NavController, ViewController, LoadingController, AlertController,NavPa
 import { WoocommerceService } from '../../providers/woocommerce-service';
 import { ProductDetailsPage } from '../product-details/product-details';
 import { TranslateService } from '@ngx-translate/core';
+import { AppConfig } from '../../app/app-config';
+
 /*
   Generated class for the Search page.
 
@@ -16,33 +18,40 @@ import { TranslateService } from '@ngx-translate/core';
 export class SearchPage {
   myInput: string = '';
   products: Array<any>;
+  products2: Array<any>;
   loadingModal: any;
   noResult: boolean;
   errorModal: any;
   searchTerm: string = '';
   value: any;
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public wooService: WoocommerceService,
-    public loadingCtrl: LoadingController, public alertCtrl: AlertController, public translateService: TranslateService, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, public viewCtrl: ViewController, public wooService: WoocommerceService,
+    public loadingCtrl: LoadingController, public alertCtrl: AlertController, public translateService: TranslateService,
+    public navParams: NavParams, public appConfig: AppConfig
+    ) {
     this.noResult = false;
     this.getProducts();
   }
-  // setFilteredItems() {
-  //   console.log(this.searchTerm);
-  //   this.products = this.filterItems(this.searchTerm);
-  // }
 
-  getItems(searchTerm){
-      if (!searchTerm) {
-        return;
-      }
-      this.products = this.products.filter((product) => {
-        if(product.name && searchTerm) {
-          if (product.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1) {
-            return true;
-          }
-          return false;
+  onSearchChange(){
+    if(this.searchTerm != ""){
+      this.noResult = false;
+      this.products2 = this.filterItems(this.searchTerm);
+    }else{
+      //this.noResult = true;
+    }
+  }
+
+  filterItems(x){
+      let results = [];
+      //console.log(x);
+      for (var i = 0; i < this.products.length; ++i) {
+        if(this.products[i].name.trim().toLowerCase().search(x) >= 0){
+          //console.log(this.products[i].name);
+          results.push(this.products[i]);
         }
-      }); 
+      }
+      return results; 
   }
 
   getProducts() {
@@ -72,7 +81,7 @@ export class SearchPage {
     this.viewCtrl.dismiss();
   }
 
-  viewProduct(id) {
-    this.navCtrl.push(ProductDetailsPage, { id: id });
+  viewProduct(product) {
+    this.navCtrl.push(ProductDetailsPage, { product: product });
   }
 }
