@@ -4,6 +4,7 @@ plugins/
 resources/
 www/lib
 www/
+config.xml
 *.swp
 *.swo
 *.log
