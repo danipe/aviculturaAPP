@@ -221,7 +221,7 @@ export class CartPage {
         }
     }
 
-    viewProduct(id) {
-        this.navCtrl.push(ProductDetailsPage, { id: id, org: 'cart' });
+    viewProduct(product) {
+        this.navCtrl.push(ProductDetailsPage, {  product: this.wooService.products.find(p => p.id = product.id), org: 'cart' });
     }
 }

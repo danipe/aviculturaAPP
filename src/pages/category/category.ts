@@ -97,8 +97,8 @@ export class CategoryPage {
 
   }
 
-  openDetails(id) {
-    this.navCtrl.push(ProductDetailsPage, { id: id });
+  openDetails(product) {
+    this.navCtrl.push(ProductDetailsPage, { product: product });
   }
 
   openListings(catID) {

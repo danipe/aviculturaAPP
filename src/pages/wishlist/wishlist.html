@@ -20,7 +20,7 @@
   </div>
   <div *ngIf="!isEmpty">
     <ion-list>
-      <ion-item *ngFor="let product of products" (click)="viewProduct(product.id)">
+      <ion-item *ngFor="let product of products" (click)="viewProduct(product)">
         <ion-thumbnail item-left> <img src="{{product.images[0].src}}"> </ion-thumbnail>
         <h2>{{product.name}}</h2>
         <p><span [innerHTML]="appConfig.Shop_Currency_format"></span>{{product.price}}</p>

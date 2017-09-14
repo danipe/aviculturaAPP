@@ -216,8 +216,8 @@ export class CartTabPage {
     }
   }
 
-  viewProduct(id) {
-    let modal = this.modalCtrl.create(ProductDetailsPage, { id: id, org: 'carttab' }, { showBackdrop: true, enableBackdropDismiss: true });
+  viewProduct(product) {
+    let modal = this.modalCtrl.create(ProductDetailsPage, { product: this.wooService.products.find(p => p.id == product.product_id), org: 'carttab' }, { showBackdrop: true, enableBackdropDismiss: true });
     modal.present();
   }
 }

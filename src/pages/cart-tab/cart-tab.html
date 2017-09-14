@@ -21,7 +21,7 @@
   </div>
   <div *ngIf="!isEmpty">
     <div *ngFor="let item of cart; let i = index" class="div-cart-item">
-      <ion-row class="div-product" (click)="viewProduct(item.product_id)">
+      <ion-row class="div-product" (click)="viewProduct(item)">
         <ion-col col-4>
           <img src="{{ item.thumb }}">
         </ion-col>

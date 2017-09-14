@@ -17,8 +17,9 @@ import CryptoJS from 'crypto-js';
 @Injectable()
 export class WoocommerceService {
   cachedData: any;
+  products: any;
   constructor(public appConfig: AppConfig, public http: Http) {
-
+ 
   }
 
   getStoreInfo() {
@@ -48,7 +49,7 @@ export class WoocommerceService {
     var url = service.appConfig.Shop_URL + "/wp-json/wc/v1/products";
     url = this.initUrl(url, params);
 
-    return new Promise(function (resolve, reject) {
+    return new Promise( (resolve, reject) => {
       service.http.get(service.initRequest(url, 'get'))
         .catch(err => {
           reject('error');
@@ -59,6 +60,7 @@ export class WoocommerceService {
         .subscribe(data => {
           if (data) {
             service.cachedData = data;
+            this.products = data;
             resolve(service.cachedData);
           }
           else {
