@@ -61,9 +61,7 @@ export class ProductDetailsPage {
         this.cartProductNumber = JSON.parse(data).length;
       }
     });
-
   }
-
 
   ionViewDidLoad() {
     this.translateService.get(['Notice', 'Loading', 'NetWork_Error', 'OK']).subscribe(value => {
@@ -78,35 +76,46 @@ export class ProductDetailsPage {
       //   this.slideImages = this.product.images;
       //   if (this.product.variations.length > 0) {
       //     this.hasVariation = true;
-      //   }
-        this.product = this.navParams.get('product');
-        console.log(this.product);
+      //   }        
+      this.product = this.navParams.get('product');
+      if(this.product.attributes.length > 0){
         this.attrArray = this.product.attributes;
-        this.slideImages = this.product.images;
-        if (this.product.variations.length > 0) {
-          this.hasVariation = true;
-        }
-        this.storage.get('oddwolves-wishlist').then((data) => {
-          if (data) {
-            var wishlistArray = JSON.parse(data);
-            var findIndex = wishlistArray.findIndex((element) => {
-              return element.product_id == this.product.id;
-            });
-            if (findIndex != -1) {
-              this.isFav = true;
-            }
-          }
-        });
+      }
+      this.slideImages = this.product.images;
+      if (this.product.variations.length > 0) {
+        this.hasVariation = true;
+      }
+      //Check if it is a pack
+      if(this.product.bundled_items.length > 0){
+        for (var i = 0; i < this.product.bundled_items.length; ++i) {
+          if(!this.product.bundled_items[i].name){
+            this.product.bundled_items[i] = this.wooService.products.find(p => p.id == this.product.bundled_items[i].product_id);
 
-        this.loadingModal.dismiss();
-      }, (reson) => {
-        this.loadingModal.dismiss();
-        this.alertCtrl.create({
-          title: this.value['Notice'],
-          message: this.value['NetWork_Error'],
-          buttons: [this.value['OK']]
-        }).present();
+          }
+        }
+        console.log(this.product);
+      }
+      this.storage.get('oddwolves-wishlist').then((data) => {
+        if (data) {
+          var wishlistArray = JSON.parse(data);
+          var findIndex = wishlistArray.findIndex((element) => {
+            return element.product_id == this.product.id;
+          });
+          if (findIndex != -1) {
+            this.isFav = true;
+          }
+        }
       });
+
+      this.loadingModal.dismiss();
+    }, (reson) => {
+      this.loadingModal.dismiss();
+      this.alertCtrl.create({
+        title: this.value['Notice'],
+        message: this.value['NetWork_Error'],
+        buttons: [this.value['OK']]
+      }).present();
+    });
     //});
 
   }
@@ -329,6 +338,10 @@ export class ProductDetailsPage {
       return value.name == attr;
     });
     return changeAttrOption ? (changeAttrOption.option ? changeAttrOption.option : '') : '';
+  }
+
+  viewProduct(product) {
+    this.navCtrl.push(ProductDetailsPage, { product: product });
   }
 
   getSelectedVariation() {

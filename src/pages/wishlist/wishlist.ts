@@ -74,7 +74,8 @@ export class WishlistPage {
   }
 
   viewProduct(product) {
-    this.navCtrl.push(ProductDetailsPage, { product: product });
+    let modal = this.modalCtrl.create(ProductDetailsPage, { product: product, org: 'carttab' }, { showBackdrop: true, enableBackdropDismiss: true });
+    modal.present();
   }
 
   goHome() {

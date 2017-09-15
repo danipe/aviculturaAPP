@@ -34,6 +34,14 @@
 	        	</span>
       </div>
     </div>
+    <!-- Descripcion del producto -->
+    <ion-list *ngIf="product.description.length > 0">
+      <ion-list-header class="item-header">
+         {{ 'PRODUCT_DESCRIPTION' | translate }}
+      </ion-list-header>
+      <ion-item [innerHTML]="product.description" class="desc"></ion-item>
+    </ion-list>
+    <!-- Atributos del producto -->
     <ion-list *ngIf="product.attributes.length>0">
       <ion-list-header class="item-header">
         {{ 'PRODUCT_Attributes' | translate }}
@@ -42,12 +50,22 @@
         {{attribute.name}}<span item-right>{{getSelectedOption(attribute.name)}}</span>
       </button>
     </ion-list>
-    <ion-list>
-      <ion-list-header class="item-header">
-         {{ 'PRODUCT_DESCRIPTION' | translate }}
+    <!-- Si es un pack, mostramos los productos que contienen el pack -->
+    <ion-list *ngIf="product.bundled_items.length>0">
+      <ion-list-header  class="item-header">
+         Contenido de la suscripción
       </ion-list-header>
-      <ion-item [innerHTML]="product.description" class="desc"></ion-item>
+      <ion-item *ngFor="let item of product.bundled_items" class="desc" (click)="viewProduct(item)"> 
+        <!-- <div *ngFor="let image of item.images">
+          <img src="{{image.src}}" />
+        </div> -->
+        {{ item.name}}         
+        <span class="pull-right">
+          <b #currencyFormat [innerHTML]="appConfig.Shop_Currency_format"></b> <b>{{item.price}} </b>
+        </span>
+      </ion-item> 
     </ion-list>
+
   </div>
 </ion-content>
 <ion-footer border-top>

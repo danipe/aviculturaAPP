@@ -27,6 +27,8 @@ export class CartTabPage {
   total: number;
   subTotal: number;
   shipTotal: number;
+  products: any;
+  product:any;
   loadingModal: any;
   isEmpty: boolean;
   errorModal: any;
@@ -62,10 +64,11 @@ export class CartTabPage {
               content: value['Loading']
             });
             this.loadingModal.present();
-            this.wooService.getProducts({ include: includeID }).then((products: Array<any>) => {
+           // this.wooService.getProducts({ include: includeID }).then((products: Array<any>) => {
+              this.products = this.wooService.products;
 
               this.cart.forEach(element => {
-                var findProduct = products.find((product) => {
+                var findProduct = this.products.find((product) => {
                   return product.id == element.product_id;
                 });
 
@@ -81,7 +84,7 @@ export class CartTabPage {
                   element.thumb = findProduct.images[0].src;
                   element.price = findProduct.price;
                 }
-              });
+             // });
               this.storage.set('oddwolves-cart', JSON.stringify(this.cart));
               this.isEmpty = false;
               this.loadingModal.dismiss();
