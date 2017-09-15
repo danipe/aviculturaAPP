@@ -142,9 +142,7 @@ export class HomePage {
       });
   }
 
-  viewProduct(product) {
-    this.navCtrl.push(ProductDetailsPage, { product: product });
-  }
+
 
   goToSearch(products) {
     this.navCtrl.push(SearchPage, { products: products });

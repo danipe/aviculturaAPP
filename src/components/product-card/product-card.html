@@ -1,0 +1,11 @@
+<div class="card round" (click)="viewProduct(product)">
+  <div class="badge" *ngIf="product.on_sale">
+    <span class="sale">{{ 'OnSale' | translate }}</span>
+  </div>
+  <div class="img" [ngStyle]="{'background-image': 'url('+product.images[0].src+')'}">
+  </div>
+  <div class="padding-xs" text-center>
+    <div class="title">{{ product.name}}</div>
+    <div [innerHTML]="product.price_html"></div>
+  </div>
+</div>
