@@ -78,6 +78,7 @@ export class ProductDetailsPage {
       //     this.hasVariation = true;
       //   }        
       this.product = this.navParams.get('product');
+      
       if(this.product.attributes.length > 0){
         this.attrArray = this.product.attributes;
       }

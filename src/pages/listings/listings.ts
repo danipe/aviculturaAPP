@@ -20,7 +20,8 @@ export class ListingsPage {
     has_more: boolean;
     loadingModal: any;
     errorModal: any;
-    products: Array<any> = new Array<any>();
+    products: any;
+    value: any;
     categoryID: string;
     constructor(public navCtrl: NavController, public actionSheetCtrl: ActionSheetController, public modalCtrl: ModalController,
         public loadingCtrl: LoadingController, public wooService: WoocommerceService, public navParams: NavParams, public tbarService: TbarService, public alertCtrl: AlertController
@@ -42,9 +43,15 @@ export class ListingsPage {
                 content: value['Loading']
             });
             this.loadingModal.present();
-            this.wooService.getProducts({ page: this.page, per_page: this.per_page, category: this.categoryID }).then((products: Array<any>) => {
-                this.products = products;
-                if (products.length < this.per_page) {
+            //this.wooService.getProducts({ page: this.page, per_page: this.per_page, category: this.categoryID }).then((products: Array<any>) => {
+                this.products = this.wooService.products.filter((product: any) => {
+                    if(product.categories.length > 0){
+                        return product.categories[0].id == this.categoryID; 
+                    }else{
+                        console.log("not iense gsnghsrterogias");
+                    }
+                });
+                if (this.products.length < this.per_page) {
                     this.has_more = false;
                 }
                 else {
@@ -54,12 +61,12 @@ export class ListingsPage {
             }, (reson) => {
                 this.loadingModal.dismiss();
                 this.alertCtrl.create({
-                    title: value['Notice'],
-                    message: value['NetWork_Error'],
-                    buttons: [value['OK']]
+                    title: this.value['Notice'],
+                    message: this.value['NetWork_Error'],
+                    buttons: [this.value['OK']]
                 }).present();
             });
-        });
+        //});
 
     }
 
