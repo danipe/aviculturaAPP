@@ -14,8 +14,7 @@ import { ProductDetailsPage } from '../../pages/product-details/product-details'
 export class ProductCardComponent {
 
 
-  @Input()
-  product: any;
+  @Input() product: any;
 
 
   constructor(private navCtrl: NavController) {

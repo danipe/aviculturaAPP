@@ -38,11 +38,11 @@ import { CountryService } from '../providers/country-service';
 import { TbarService } from '../providers/tbar-service';
 import { UserService } from '../providers/user-service';
 import { SowService } from '../providers/sow-service';
+import { ProductCardComponent } from '../components/product-card/product-card';
 
 @NgModule({
   declarations: [
     MyApp,
-
     TabsPage,
     HomePage,
     WishlistPage,
@@ -64,12 +64,18 @@ import { SowService } from '../providers/sow-service';
     FaqPage,
     DownloadPage,
     ThanksPage,
-    CartTabPage, StripePayPage, AttributePage
+    CartTabPage,
+    StripePayPage,
+    AttributePage,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp, { tabsHideOnSubPages: true }),
+    IonicModule.forRoot(MyApp, { 
+        tabsHideOnSubPages: true,
+        backButtonText: 'Volver'
+    }),
     IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {

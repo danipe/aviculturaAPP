@@ -36,7 +36,7 @@ export class MyApp {
     translate: TranslateService
   ) {
     this.initializeApp();
-     translate.setDefaultLang(this.appConfig.Shop_Language);
+    translate.setDefaultLang(this.appConfig.Shop_Language);
     translate.use(this.appConfig.Shop_Language);
     this.pages = [
       { title: 'LoginPage', component: LoginPage },
@@ -72,6 +72,13 @@ export class MyApp {
     this.sowService.getShippingMethod().then((data: Array<any>) => {
       if (data && data.length > 0) {
         this.appConfig.Shop_Shipping = data;
+      }
+    });
+
+    this.sowService.getPacks().then((data: Array<any>) => {
+      if (data && data.length > 0) {
+        console.log("<- INFO ->");
+        console.log(data);
       }
     });
 

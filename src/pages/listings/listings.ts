@@ -41,6 +41,7 @@ export class ListingsPage {
             this.loadingModal = this.loadingCtrl.create({
                 content: value['Loading']
             });
+            this.loadingModal.present();
             this.wooService.getProducts({ page: this.page, per_page: this.per_page, category: this.categoryID }).then((products: Array<any>) => {
                 this.products = products;
                 if (products.length < this.per_page) {
