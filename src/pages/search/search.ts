@@ -33,7 +33,7 @@ export class SearchPage {
     this.getProducts();
   }
 
-  onSearchChange(){
+ onSearchChange(){
     if(this.searchTerm != ""){
       this.noResult = false;
       this.products2 = this.filterItems(this.searchTerm);
@@ -49,6 +49,9 @@ export class SearchPage {
         if(this.products[i].name.trim().toLowerCase().search(x) >= 0){
           //console.log(this.products[i].name);
           results.push(this.products[i]);
+          this.noResult = false;
+        }else if(results.length == 0){
+          this.noResult = true;
         }
       }
       return results; 
@@ -62,6 +65,7 @@ export class SearchPage {
       });
       this.loadingModal.present();
         this.products = this.navParams.get('products');
+        this.products2 = this.products;
         if(this.products.length == 0){
           this.noResult = true;
         }else{

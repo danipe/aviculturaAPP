@@ -80,6 +80,7 @@ export class ProductDetailsPage {
       //     this.hasVariation = true;
       //   }
         this.product = this.navParams.get('product');
+        console.log("jejejej"+this.product);
         this.attrArray = this.product.attributes;
         this.slideImages = this.product.images;
         if (this.product.variations.length > 0) {

@@ -73,8 +73,8 @@ export class WishlistPage {
 
   }
 
-  viewProduct(pid) {
-    this.navCtrl.push(ProductDetailsPage, { id: pid });
+  viewProduct(product) {
+    this.navCtrl.push(ProductDetailsPage, { product: product });
   }
 
   goHome() {
