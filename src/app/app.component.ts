@@ -75,13 +75,6 @@ export class MyApp {
       }
     });
 
-    this.sowService.getPacks().then((data: Array<any>) => {
-      if (data && data.length > 0) {
-        console.log("<- INFO ->");
-        console.log(data);
-      }
-    });
-
     this.storage.get('oddwolves-user-info').then((data) => {
       if (data) {
         var userInfo = JSON.parse(data);

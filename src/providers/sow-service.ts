@@ -66,28 +66,6 @@ export class SowService {
     });
   }
 
-    getPacks(){
-      var service = this;
-      let url = service.appConfig.Shop_URL + "/wp-json/sow/v1/getPacks/";
-      url = this.initUrl(url,'');
-       var headers = new Headers();
-      headers.append('Content-Type', 'text/plain');
-      return new Promise(function (resolve, reject) {
-        service.http.get(url, { headers: headers }).catch(err => {
-          reject('error');
-          return Observable.throw(err);
-        }).map(res => res.json()).subscribe(data => {
-          if (data) {
-            service.cachedData = data;
-            resolve(service.cachedData);
-          }
-          else {
-            reject();
-          }
-        });
-      });
-    }
-
   getHomeSlider(){
     var service = this;
     let url = service.appConfig.Shop_URL + "/wp-json/sow/v1/home_slider/";
