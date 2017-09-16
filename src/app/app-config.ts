@@ -23,9 +23,9 @@ export class AppConfig {
   //Paypal setting
   //PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
   //if you want to test payment,set Environments to PayPalEnvironmentSandbox,otherwise set to PayPalEnvironmentProduction
-  Paypal_Environments = "PayPalEnvironmentProduction";
+  Paypal_Environments = "PayPalEnvironmentSandbox";
   PayPal_EnvironmentProduction = "";
-  PayPal_EnvironmentSandbox = "";
+  PayPal_EnvironmentSandbox = "AZk-lmSv2i6XLUE_CDKjCSsMWK_ZcOv_K7MJtQjlYPuKfETqzDPDZY5DEeHHfOZ9mQ-CmSoenH11Ukc6";
 
   //Stripe payment setting
   Enable_Stripe = true;//Enable or disable stripe
