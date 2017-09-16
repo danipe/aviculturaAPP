@@ -47,7 +47,7 @@ export class DownloadPage {
   }
   openUrl(url){
         this.platform.ready().then(() => {
-            let browser = new InAppBrowser(url,'_blank','location=yes');
+            let browser = new InAppBrowser(url,'_blank','location=no,toolbar=yes');
 
         });
   }
