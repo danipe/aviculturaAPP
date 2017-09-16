@@ -17,7 +17,7 @@
   "Town_City": "Pueblo/Ciudad",
   "State": "Estado",
   "Zip_Code": "Código postal",
-  "Billing_Address_Same_as_Shipping": "Dirección envio(La misma que el envio)",
+  "Billing_Address_Same_as_Shipping": "Dirección de facturación (La misma que el envio)",
   "Save": "Guardar",
   "Address_Saved": "Dirección guardada",
 
@@ -48,7 +48,7 @@
 
   "Listings": "Listados",
 
-  "Login_Skip": "Skip",
+  "Login_Skip": "Omitir",
   "Sign_In": "Inicia sesión",
   "Sign_Up": "Registrate",
   "Sign_In_No_Email": "Por favor, introduce un email.",

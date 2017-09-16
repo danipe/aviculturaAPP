@@ -48,7 +48,7 @@ export class ListingsPage {
                     if(product.categories.length > 0){
                         return product.categories[0].id == this.categoryID; 
                     }else{
-                        console.log("not iense gsnghsrterogias");
+                        
                     }
                 });
                 if (this.products.length < this.per_page) {

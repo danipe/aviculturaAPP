@@ -46,7 +46,7 @@
       </ion-item>
     </ion-item-group>
     <ion-item-divider color="light">
-      <ion-label>Billing Address(Same as Shipping)</ion-label>
+      <ion-label>{{ 'Billing_Address_Same_as_Shipping' | translate }}</ion-label>
       <ion-checkbox color="dark" [(ngModel)]="sameAddress" item-right></ion-checkbox>
     </ion-item-divider>
    <ion-item-group *ngIf="!sameAddress">

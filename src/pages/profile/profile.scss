@@ -6,9 +6,12 @@ page-profile ion-header:after {
   background-image: none !important;
 }
 
+page-profile .header-ios .toolbar-ios:last-child .toolbar-background-ios{
+  border-width:0px;
+}
 page-profile .user-info-header {
   height: 20vh;
-  background: #fd5459;
+  background: #235D8D;
   border-radius: 0 0 100% 100%;
   color: white;
 }
