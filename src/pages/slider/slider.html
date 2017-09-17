@@ -7,26 +7,39 @@
 <ion-slides pager="true">
  
   <ion-slide class="slide_1">
-    <img src="images/slide1.png" />
-    <h1> Slider1 </h1>
+    <div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
+        <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+	</div>
+	<div>
+		<h2>chat with others</h2>
+		<p>inspire and help each other reach fitness and diet goals.</p>
+	</div>
   </ion-slide>
  
   <ion-slide class="slide_2">
-    <img src="images/slide2.png" />
-    <h1> Slider2 </h1>
+    <div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
+        <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+	</div>
+	<div>
+		<h2>chat with others</h2>
+		<p>inspire and help each other reach fitness and diet goals.</p>
+	</div>
   </ion-slide>
  
   <ion-slide class="slide_3">
-    <ion-row>
-      <ion-col>
-        <img src="images/slide4.png" />
-      </ion-col>
-    </ion-row>
+    <div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
+        <ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+	</div>
+	<div>
+		<h2>chat with others</h2>
+		<p>inspire and help each other reach fitness and diet goals.</p>
+	</div>
     <ion-row>
       <ion-col>
         <button ion-button color="light" (click)="goToHome()">Empieza a usar Avicultura de Raza</button>
       </ion-col>
     </ion-row>
   </ion-slide>
- 
 </ion-slides>
+  <button (click)="skip()" id="skip">Skip</button>
+

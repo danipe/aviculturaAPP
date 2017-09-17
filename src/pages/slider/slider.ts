@@ -21,8 +21,11 @@ export class SliderPage {
     console.log('ionViewDidLoad SliderPage');
   }
 
-   goToHome(){
+  goToHome(){
     this.navCtrl.setRoot(TabsPage,0);
   }
 
+  skip() {
+    this.navCtrl.push(TabsPage);
+  }
 }
