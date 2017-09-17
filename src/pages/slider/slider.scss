@@ -1,0 +1,22 @@
+.ios, .md {
+ 
+  page-slider {
+ 
+  	.slide_1{
+  		background-color: #FFD744;
+  	}
+  	.slide_2{
+  		background-color: #69BB7B;
+  	}
+  	.slide_3{
+  		background-color: #235D8D;
+  	}
+
+    ion-slide img {
+      height: 70vh !important;
+      width: auto !important;
+    }
+ 
+  }
+ 
+}

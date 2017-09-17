@@ -31,6 +31,7 @@ import { ThanksPage } from '../pages/thanks/thanks';
 import { StripePayPage } from '../pages/stripe-pay/stripe-pay';
 import { AttributePage } from '../pages/attribute/attribute';
 import { DownloadPage } from '../pages/download/download';
+import { SliderPage } from '../pages/slider/slider';
 
 import { AppConfig } from './app-config';
 import { WoocommerceService } from '../providers/woocommerce-service';
@@ -62,6 +63,7 @@ import { ProductCardComponent } from '../components/product-card/product-card';
     AboutPage,
     ContactPage,
     FaqPage,
+    SliderPage,
     DownloadPage,
     ThanksPage,
     CartTabPage,
@@ -88,7 +90,6 @@ import { ProductCardComponent } from '../components/product-card/product-card';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-
     CountryPage,
     TabsPage,
     HomePage,
@@ -99,6 +100,7 @@ import { ProductCardComponent } from '../components/product-card/product-card';
     CategoryPage,
     ListingsPage,
     LoginPage,
+    SliderPage,
     DownloadPage,
     ProductDetailsPage,
     RegisterPage,

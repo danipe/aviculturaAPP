@@ -7,6 +7,7 @@ import { SowService } from '../providers/sow-service';
 import { Storage } from '@ionic/storage';
 import { UserService } from '../providers/user-service';
 import { TabsPage } from '../pages/tabs/tabs';
+import { SliderPage } from '../pages/slider/slider';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { AboutPage } from '../pages/about/about';
@@ -52,17 +53,27 @@ export class MyApp {
       StatusBar.styleLightContent();
       Keyboard.hideKeyboardAccessoryBar(false);
 
-      if (this.appConfig.Onesignal_Enable == true) {
-        OneSignal.startInit(this.appConfig.OneSignal_AppID, this.appConfig.GCM_SenderID);
-        OneSignal.handleNotificationReceived().subscribe(() => {
-          // do something when notification is received
-        });
-        OneSignal.handleNotificationOpened().subscribe(() => {
-          // do something when a notification is opened
-        });
-        OneSignal.endInit();
-      }
+      // if (this.appConfig.Onesignal_Enable == true) {
+      //   OneSignal.startInit(this.appConfig.OneSignal_AppID, this.appConfig.GCM_SenderID);
+      //   OneSignal.handleNotificationReceived().subscribe(() => {
+      //     // do something when notification is received
+      //   });
+      //   OneSignal.handleNotificationOpened().subscribe(() => {
+      //     // do something when a notification is opened
+      //   });
+      //   OneSignal.endInit();
+      // }
+      this.storage.get('introShown').then((result) => {
+        if(result){
+          //this.rootPage = TabsPage;
+          this.rootPage = SliderPage;
+        } else {
+          this.rootPage = SliderPage;
+          this.storage.set('introShown', true);
+        }
+       });
     });
+
     this.wooService.getStoreInfo().then((storeInfo: any) => {
       this.appConfig.Shop_Name = storeInfo.store.name;
       this.appConfig.Shop_Currency = storeInfo.store.meta.currency;

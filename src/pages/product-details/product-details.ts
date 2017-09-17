@@ -286,7 +286,7 @@ export class ProductDetailsPage {
       });
       this.loadingModal.present();
 
-      SocialSharing.share("Sell " + this.product.name + " for only " + this.product.price + this.currencySymbol.nativeElement.innerHTML + ", for more details check this out.",
+      SocialSharing.share("Mira la revista tan genial de Avicultura de raza:  " + this.product.name + " por solo " + this.product.price + this.currencySymbol.nativeElement.innerHTML + ", para más detalles click en el link.",
         this.product.name, null, this.product.permalink).then(() => {
           this.loadingModal.dismiss();
           this.alertCtrl.create({
