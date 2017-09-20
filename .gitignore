@@ -3,7 +3,7 @@ platforms/
 plugins/
 resources/
 www/lib
-www/
+www/*
 config.xml
 *.swp
 *.swo
