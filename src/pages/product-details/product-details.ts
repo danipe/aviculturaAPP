@@ -26,6 +26,7 @@ export class ProductDetailsPage {
   selVariation: any;
   mySlideOptions: any;
   hasVariation: boolean = false;
+  inCart: boolean = false;
   slideImages: Array<any>;
   variationImg: string;
   show = true;
@@ -51,6 +52,10 @@ export class ProductDetailsPage {
       loop: true,
       autoplay: 2000
     };
+    if(this.wooService.cart && this.wooService.cart != null){
+      this.inCart = this.wooService.cart.find(product => product.id == this.product.id);
+    }
+
   }
 
 
@@ -76,9 +81,9 @@ export class ProductDetailsPage {
       //   this.slideImages = this.product.images;
       //   if (this.product.variations.length > 0) {
       //     this.hasVariation = true;
-      //   }        
+      //   }
       this.product = this.navParams.get('product');
-      
+
       if(this.product.attributes.length > 0){
         this.attrArray = this.product.attributes;
       }
@@ -124,7 +129,7 @@ export class ProductDetailsPage {
   addCartClip() {
     this.translateService.get(['Notice', 'Product_added_successfully', 'Please_select_variation', 'OK']).subscribe(value => {
       this.selVariation = this.getSelectedVariation();
-      if (this.selVariation != null || this.hasVariation == false) {
+      if ((this.selVariation != null || this.hasVariation == false) && !this.inCart) {
         this.loadingModal = this.loadingCtrl.create({
           spinner: 'hide',
           content: '<div class="addcart-info"><img src="assets/img/fill.png"/></div><div>' + value['Product_added_successfully'] + '</div>'
@@ -144,6 +149,7 @@ export class ProductDetailsPage {
               }
               else {
                 cartArray.push(this.createNewProduct());
+                this.wooService.cart.push(this.createNewProduct());
               }
               this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
             } else {
@@ -155,12 +161,14 @@ export class ProductDetailsPage {
               }
               else {
                 cartArray.push(this.createNewProduct());
+                this.wooService.cart.push(this.createNewProduct());
               }
               this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
 
             }
           } else {
             cartArray.push(this.createNewProduct());
+            this.wooService.cart.push(this.createNewProduct());
             this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
           }
 
@@ -179,7 +187,8 @@ export class ProductDetailsPage {
         }).present();
       }
     });
-
+    console.log(this.wooService.cart);
+    this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
   }
 
   createNewProduct() {

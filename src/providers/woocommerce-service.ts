@@ -8,6 +8,7 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import CryptoJS from 'crypto-js';
+import { Storage } from '@ionic/storage';
 /*
   Generated class for the WoocommerceService provider.
 
@@ -18,8 +19,11 @@ import CryptoJS from 'crypto-js';
 export class WoocommerceService {
   cachedData: any;
   products: any;
-  constructor(public appConfig: AppConfig, public http: Http) {
- 
+  cart: Array<any>;
+  constructor(public appConfig: AppConfig, public http: Http, public storage: Storage) {
+    this.storage.get('virtual-cart').then(cart => {
+      this.cart = cart;
+    });
   }
 
   getStoreInfo() {

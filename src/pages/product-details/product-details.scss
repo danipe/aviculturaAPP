@@ -75,12 +75,16 @@ page-product-details ion-chip {
 
 page-product-details .chip-button ion-chip{
   width: 100%;
- 
+
 }
 
 page-product-details .chip-button ion-chip.chip-enable {
   background-color: #fd5459;
   color: white;
+}
+page-product-details .chip-button ion-chip.disabled {
+  background-color: initial !important;
+  color: initial !important;
 }
 
 page-product-details .text-on-bottom {
