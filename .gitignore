@@ -5,7 +5,7 @@ resources/
 www/lib
 www/*
 config.xml
-.sourcemaps\main.js.map
+.sourcemaps/main.js.map
 *.swp
 *.swo
 *.log
