@@ -187,8 +187,8 @@ export class ProductDetailsPage {
         }).present();
       }
     });
-    console.log(this.wooService.cart);
-    this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
+    // console.log(this.wooService.cart);
+    // this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
   }
 
   createNewProduct() {
