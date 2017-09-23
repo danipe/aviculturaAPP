@@ -52,9 +52,9 @@ export class ProductDetailsPage {
       loop: true,
       autoplay: 2000
     };
-    if(this.wooService.cart && this.wooService.cart != null){
-      this.inCart = this.wooService.cart.find(product => product.id == this.product.id);
-    }
+    // if(this.wooService.cart && this.wooService.cart != null){
+    //   this.inCart = this.wooService.cart.find(product => product.id == this.product.id);
+    // }
 
   }
 
@@ -149,7 +149,7 @@ export class ProductDetailsPage {
               }
               else {
                 cartArray.push(this.createNewProduct());
-                this.wooService.cart.push(this.createNewProduct());
+                // this.wooService.cart.push(this.createNewProduct());
               }
               this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
             } else {
@@ -161,14 +161,14 @@ export class ProductDetailsPage {
               }
               else {
                 cartArray.push(this.createNewProduct());
-                this.wooService.cart.push(this.createNewProduct());
+                // this.wooService.cart.push(this.createNewProduct());
               }
               this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
 
             }
           } else {
             cartArray.push(this.createNewProduct());
-            this.wooService.cart.push(this.createNewProduct());
+            // this.wooService.cart.push(this.createNewProduct());
             this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
           }
 

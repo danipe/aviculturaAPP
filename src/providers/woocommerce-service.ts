@@ -19,11 +19,11 @@ import { Storage } from '@ionic/storage';
 export class WoocommerceService {
   cachedData: any;
   products: any;
-  cart: Array<any>;
+  // cart: Array<any>;
   constructor(public appConfig: AppConfig, public http: Http, public storage: Storage) {
-    this.storage.get('virtual-cart').then(cart => {
-      this.cart = cart;
-    });
+    // this.storage.get('virtual-cart').then(cart => {
+    //   this.cart = cart;
+    // });
   }
 
   getStoreInfo() {
