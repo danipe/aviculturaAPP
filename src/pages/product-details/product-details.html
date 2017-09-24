@@ -82,7 +82,7 @@
         </ion-chip>
       </ion-col>
       <ion-col col-6 class="chip-button">
-        <ion-chip [ngClass]="{'chip-enable': selVariation!=null || hasVariation!=true}" (click)="addCartClip()">
+        <ion-chip [ngClass]="{'chip-enable': (selVariation!=null || hasVariation!=true) && !this.inCart}" (click)="addToCartArray()">
           <ion-label>{{ 'Add_to_cart' | translate }} {{this.inCart}}</ion-label>
         </ion-chip>
       </ion-col>

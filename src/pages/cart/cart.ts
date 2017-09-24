@@ -118,6 +118,8 @@ export class CartPage {
     }
 
     remove(pid) {
+        this.wooService.cart.splice(this.wooService.cart.findIndex(product => product.id == pid), 1);
+        console.log(this.wooService.cart);
         event.stopPropagation();
         var findIndex = this.cart.findIndex((element) => {
             return element.product_id == pid;

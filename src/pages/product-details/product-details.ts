@@ -52,10 +52,30 @@ export class ProductDetailsPage {
       loop: true,
       autoplay: 2000
     };
-    // if(this.wooService.cart && this.wooService.cart != null){
-    //   this.inCart = this.wooService.cart.find(product => product.id == this.product.id);
-    // }
 
+  }
+
+  checkCart() {
+    // console.log(this.wooService.cart);
+    // console.log(this.product);
+    // console.log(this.wooService.cart);
+    if(this.wooService.cart && this.wooService.cart != null){
+      this.inCart = this.wooService.cart.find((product) => {
+        // console.log(product);
+        // console.log(this.product);
+        if(product.id == this.product.id) {
+          // if(this.product.attributes && this.product.attributes.option && product.attributes.option == this.product.attributes.option) {
+          //   return true;
+          // } else {
+          //   return false;
+          // } 
+          return true;
+        } else {
+          return false;
+        }
+      }) ? true : false;
+      // console.log(this.inCart);
+    }
   }
 
 
@@ -83,6 +103,8 @@ export class ProductDetailsPage {
       //     this.hasVariation = true;
       //   }
       this.product = this.navParams.get('product');
+          // console.log(this.product);
+      this.checkCart();
 
       if(this.product.attributes.length > 0){
         this.attrArray = this.product.attributes;
@@ -99,7 +121,7 @@ export class ProductDetailsPage {
 
           }
         }
-        console.log(this.product);
+        // console.log(this.product);
       }
       this.storage.get('oddwolves-wishlist').then((data) => {
         if (data) {
@@ -126,7 +148,28 @@ export class ProductDetailsPage {
 
   }
 
+  addToCartArray() {
+    this.checkCart();
+    if(!this.inCart) {
+      // console.log('deberia meter un id al array')
+      this.addCartClip();
+      this.wooService.cart.push(this.product);
+      this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
+      this.inCart=true;
+    } else {
+      this.alertCtrl.create({
+          title: 'Atención',
+          message: 'Ya has añadido este producto a la cesta',
+          buttons: ['OK']
+        }).present();
+    } 
+    
+  }
+
   addCartClip() {
+    // console.log('pedazo de click que le he metido');
+    //Comprobamos que el producto no ha sido añadido a la lista
+    // this.addToCartArray();
     this.translateService.get(['Notice', 'Product_added_successfully', 'Please_select_variation', 'OK']).subscribe(value => {
       this.selVariation = this.getSelectedVariation();
       if ((this.selVariation != null || this.hasVariation == false) && !this.inCart) {
@@ -188,7 +231,6 @@ export class ProductDetailsPage {
       }
     });
     // console.log(this.wooService.cart);
-    // this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
   }
 
   createNewProduct() {
