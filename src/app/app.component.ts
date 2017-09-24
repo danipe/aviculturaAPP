@@ -50,28 +50,29 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleLightContent();
+      StatusBar.styleDefault();
       Keyboard.hideKeyboardAccessoryBar(false);
 
-      // if (this.appConfig.Onesignal_Enable == true) {
-      //   OneSignal.startInit(this.appConfig.OneSignal_AppID, this.appConfig.GCM_SenderID);
-      //   OneSignal.handleNotificationReceived().subscribe(() => {
-      //     // do something when notification is received
-      //   });
-      //   OneSignal.handleNotificationOpened().subscribe(() => {
-      //     // do something when a notification is opened
-      //   });
-      //   OneSignal.endInit();
-      // }
-      this.storage.get('introShown').then((result) => {
+      this.storage.get('sliderPage').then((result) => {
         if(result){
-          //this.rootPage = TabsPage;
-          this.rootPage = SliderPage;
+          this.rootPage = TabsPage;
+          //this.rootPage = SliderPage;
         } else {
           this.rootPage = SliderPage;
-          this.storage.set('introShown', true);
+          this.storage.set('sliderPage', true);
         }
-       });
+      });
+
+      if (this.appConfig.Onesignal_Enable == true) {
+        OneSignal.startInit(this.appConfig.OneSignal_AppID, this.appConfig.GCM_SenderID);
+        OneSignal.handleNotificationReceived().subscribe(() => {
+          // do something when notification is received
+        });
+        OneSignal.handleNotificationOpened().subscribe(() => {
+          // do something when a notification is opened
+        });
+        OneSignal.endInit();
+      }
     });
 
     this.wooService.getStoreInfo().then((storeInfo: any) => {

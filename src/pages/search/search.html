@@ -18,8 +18,8 @@
   <div *ngIf="noResult" class="empty">
     <h3>{{ 'No_Results' | translate }}</h3>
   </div>
-  <ion-grid>
-    <ion-row>
+  <!-- <ion-grid>
+    <ion-row *ngIf="result">
       <ion-col col-6 *ngFor="let product of products2">
         <div class="card round" (click)="viewProduct(product)">
           <div class="badge" *ngIf="product.on_sale">
@@ -34,5 +34,30 @@
         </div>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <ion-list *ngIf="result;else elseBlock">
+    <ion-item-sliding *ngFor="let product of products2">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="{{ product.images[0].src }}">
+        </ion-avatar>
+        <h2>{{ product.name }}</h2>
+        <div class="badge" *ngIf="product.on_sale">
+          <span class="sale">Oferta</span>
+        </div>
+        <p [innerHTML]="appConfig.Shop_Currency_format+product.price"></p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="viewProduct(product)">
+          <ion-icon name="ios-eye"></ion-icon>
+          Ver producto
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ng-template #elseBlock>
+    <div class="empty">
+      <h3>Empieza a buscar productos</h3>
+    </div>
+  </ng-template>
 </ion-content>

@@ -21,6 +21,7 @@ export class SearchPage {
   products2: Array<any>;
   loadingModal: any;
   noResult: boolean;
+  result: boolean;
   errorModal: any;
   searchTerm: string = '';
   value: any;
@@ -30,12 +31,14 @@ export class SearchPage {
     public navParams: NavParams, public appConfig: AppConfig
     ) {
     this.noResult = false;
+    this.result = false;
     this.getProducts();
   }
 
  onSearchChange(){
     if(this.searchTerm != ""){
       this.noResult = false;
+      this.result = true;
       this.products2 = this.filterItems(this.searchTerm);
     }else{
       //this.noResult = true;
