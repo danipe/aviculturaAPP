@@ -45,6 +45,7 @@
     <ion-list *ngIf="product.attributes.length>0">
       <ion-list-header class="item-header">
         {{ 'PRODUCT_Attributes' | translate }}
+        
       </ion-list-header>
       <button ion-item *ngFor="let attribute of product.attributes;" (click)="attributeSelected(attribute)">
         {{attribute.name}}<span item-right>{{getSelectedOption(attribute.name)}}</span>
