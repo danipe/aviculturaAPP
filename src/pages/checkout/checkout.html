@@ -23,7 +23,7 @@
         <ion-input type="email" placeholder="{{ 'Email' | translate }}" [(ngModel)]="shippingAddress.email"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="number" placeholder="{{ 'Phone' | translate }}" [(ngModel)]="shippingAddress.phone"></ion-input>
+        <ion-input type="tel" placeholder="{{ 'Phone' | translate }}" [(ngModel)]="shippingAddress.phone"></ion-input>
       </ion-item>
       <ion-item (click)="selectCountry('shipping')">
         <ion-label>{{shippingAddress.country==''?('Select_Country'| translate):shippingAddress.country}}</ion-label>
@@ -38,11 +38,11 @@
       <ion-item>
         <ion-input type="text" placeholder="{{ 'Town_City' | translate }}" [(ngModel)]="shippingAddress.city"></ion-input>
       </ion-item>
-      <ion-item>
+    <!--   <ion-item>
         <ion-input type="text" placeholder="{{ 'State' | translate }}" [(ngModel)]="shippingAddress.state"></ion-input>
-      </ion-item>
+      </ion-item> -->
       <ion-item>
-        <ion-input type="number" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="shippingAddress.zip"></ion-input>
+        <ion-input type="tel" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="shippingAddress.zip"></ion-input>
       </ion-item>
     </ion-item-group>
     <ion-item-divider color="light">
@@ -60,7 +60,7 @@
         <ion-input type="email" placeholder="{{ 'Email' | translate }}" [(ngModel)]="billingAddress.email"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="number" placeholder="{{ 'Phone' | translate }}" [(ngModel)]="billingAddress.phone"></ion-input>
+        <ion-input type="tel" placeholder="{{ 'Phone' | translate }}" [(ngModel)]="billingAddress.phone"></ion-input>
       </ion-item>
       <ion-item (click)="selectCountry('billing')">
         <ion-label>{{billingAddress.country==''?('Select_Country'| translate):billingAddress.country}}</ion-label>
@@ -75,18 +75,27 @@
       <ion-item>
         <ion-input type="text" placeholder="{{ 'Town_City' | translate }}" [(ngModel)]="billingAddress.city"></ion-input>
       </ion-item>
-      <ion-item>
+<!--       <ion-item>
         <ion-input type="text" placeholder="{{ 'State' | translate }}" [(ngModel)]="billingAddress.state"></ion-input>
-      </ion-item>
+      </ion-item> -->
       <ion-item>
-        <ion-input type="number" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="billingAddress.zip"></ion-input>
+        <ion-input type="tel" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="billingAddress.zip"></ion-input>
       </ion-item>
     </ion-item-group>
     <ion-item-group radio-group [(ngModel)]="selShipMethod">
       <ion-item-divider color="primary">{{ 'Shiping_Method' | translate }}</ion-item-divider>
       <ion-item *ngFor="let shipmethod of appConfig.Shop_Shipping;let i = index">
-        <ion-label>{{shipmethod.title}}({{shipmethod.cost}}<span [innerHTML]="appConfig.Shop_Currency_format"></span>)</ion-label>
+        <ion-label>{{shipmethod.title}} ({{shipmethod.cost}}<span [innerHTML]="appConfig.Shop_Currency_format"></span>)</ion-label>
         <ion-radio checked="true" value="{{i}}"></ion-radio>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="primary"> Total</ion-item-divider>
+      <ion-item>
+        <ion-label> 
+         {{ totalWithShipping }} <span [innerHTML]="appConfig.Shop_Currency_format"></span> 
+         <span class="pull-right">(Envio incluido)</span>
+        </ion-label>
       </ion-item>
     </ion-item-group>
   </ion-list>

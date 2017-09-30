@@ -50,7 +50,8 @@ export class CheckoutPage {
     zip: ''
   };
   selShipMethod = 0;
-  total;
+  total: any;
+  totalWithShipping = 0;
   desc = '';
   sameAddress = true;
 
@@ -63,6 +64,7 @@ export class CheckoutPage {
     public navParams: NavParams, public userService: UserService, public wooService: WoocommerceService, public loadingCtrl: LoadingController, public alertCtrl: AlertController
     , public appCtrl: App, public tbarService: TbarService, public viewCtrl: ViewController, public translateService: TranslateService) {
     this.total = this.navParams.get('total');
+    this.totalWithShipping = parseFloat(this.navParams.get('total')) + parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost);
     this.desc = this.navParams.get('description');
   }
 
