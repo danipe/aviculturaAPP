@@ -52,6 +52,7 @@ export class CartTabPage {
       this.storage.get('oddwolves-cart').then((data) => {
         if (data) {
           this.cart = JSON.parse(data);
+          console.log(this.cart);
           if (this.cart.length > 0) {
             var includeID = '';
             this.cart.forEach(element => {
@@ -197,16 +198,26 @@ export class CartTabPage {
 
   checkout() {
     var desc = '';
+    let countOnline = 0;
+    let countNormal = 0;
     this.cart.forEach(element => {
+      if(element.variation_name == "Online "){
+        countOnline += 1;
+      }else{
+        countNormal += 1;
+      }
       desc += element.name + ',';
     });
     if (desc.length > 0) {
       desc = desc.substr(0, desc.length - 1);
     }
     if (this.userService.isAuthenticated == true) {
-
       desc = desc.substr(0, desc.length - 1);
-      this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc });
+        if(countOnline > 0 && countNormal == 0){
+          this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc , "envio_gratis": true });
+        }else{
+          this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc , "envio_gratis": false });
+        }
     } else {
       let modal = this.modalCtrl.create(LoginPage, {}, { showBackdrop: true, enableBackdropDismiss: true });
       modal.present();

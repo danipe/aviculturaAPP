@@ -82,19 +82,21 @@
         <ion-input type="tel" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="billingAddress.zip"></ion-input>
       </ion-item>
     </ion-item-group>
-    <ion-item-group radio-group [(ngModel)]="selShipMethod">
+
+    <ion-item-group *ngIf="isFreeShipping == false" radio-group [(ngModel)]="selShipMethod">
       <ion-item-divider color="primary">{{ 'Shiping_Method' | translate }}</ion-item-divider>
       <ion-item *ngFor="let shipmethod of appConfig.Shop_Shipping;let i = index">
         <ion-label>{{shipmethod.title}} ({{shipmethod.cost}}<span [innerHTML]="appConfig.Shop_Currency_format"></span>)</ion-label>
         <ion-radio checked="true" value="{{i}}"></ion-radio>
       </ion-item>
     </ion-item-group>
+
     <ion-item-group>
       <ion-item-divider color="primary"> Total</ion-item-divider>
       <ion-item>
         <ion-label> 
          {{ totalWithShipping }} <span [innerHTML]="appConfig.Shop_Currency_format"></span> 
-         <span class="pull-right">(Envio incluido)</span>
+         <span *ngIf="isFreeShipping == false" class="pull-right">(Envio incluido)</span>
         </ion-label>
       </ion-item>
     </ion-item-group>

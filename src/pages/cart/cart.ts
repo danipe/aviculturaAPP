@@ -202,24 +202,35 @@ export class CartPage {
 
     checkout() {
         var desc = '';
+        let countOnline = 0;
+        let countNormal = 0;
         this.cart.forEach(element => {
-            desc += element.name + ',';
+          if(element.variation_name == "Online "){
+            countOnline += 1;
+          }else{
+            countNormal += 1;
+          }
+          desc += element.name + ',';
         });
         if (desc.length > 0) {
-            desc = desc.substr(0, desc.length - 1);
+          desc = desc.substr(0, desc.length - 1);
         }
         if (this.userService.isAuthenticated == true) {
-            desc = desc.substr(0, desc.length - 1);
-            this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc });
+          desc = desc.substr(0, desc.length - 1);
+            if(countOnline > 0 && countNormal == 0){
+              this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc , "envio_gratis": true });
+            }else{
+              this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc , "envio_gratis": false });
+            }
         } else {
-            let modal = this.modalCtrl.create(LoginPage, {}, { showBackdrop: true, enableBackdropDismiss: true });
-            modal.present();
-            modal.onDidDismiss(() => {
-                if (this.userService.isAuthenticated) {
-                    this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc });
-                }
+          let modal = this.modalCtrl.create(LoginPage, {}, { showBackdrop: true, enableBackdropDismiss: true });
+          modal.present();
+          modal.onDidDismiss(() => {
+            if (this.userService.isAuthenticated == true) {
+              this.navCtrl.push(CheckoutPage, { "total": this.total, "description": desc });
+            }
 
-            });
+          });
         }
     }
 

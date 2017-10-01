@@ -54,7 +54,7 @@ export class CheckoutPage {
   totalWithShipping = 0;
   desc = '';
   sameAddress = true;
-
+  isFreeShipping: boolean;
   set_paid: boolean;
   errorModal: any;
   orderID = '';
@@ -64,7 +64,14 @@ export class CheckoutPage {
     public navParams: NavParams, public userService: UserService, public wooService: WoocommerceService, public loadingCtrl: LoadingController, public alertCtrl: AlertController
     , public appCtrl: App, public tbarService: TbarService, public viewCtrl: ViewController, public translateService: TranslateService) {
     this.total = this.navParams.get('total');
-    this.totalWithShipping = parseFloat(this.navParams.get('total')) + parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost);
+    //Comprobamos si el envio es gratis al ser un producto online
+    if(this.navParams.get('envio_gratis')){
+      this.isFreeShipping = true;
+      this.totalWithShipping = parseFloat(this.navParams.get('total'));
+    }else{
+      this.isFreeShipping = false;
+      this.totalWithShipping = parseFloat(this.navParams.get('total')) + parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost);
+    }
     this.desc = this.navParams.get('description');
   }
 

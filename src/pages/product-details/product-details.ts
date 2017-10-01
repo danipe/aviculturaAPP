@@ -69,11 +69,11 @@ export class ProductDetailsPage {
           // } else {
           //   return false;
           // } 
-          return true;
+          return false;
         } else {
           return false;
         }
-      }) ? true : false;
+      }) ? false : false;
       // console.log(this.inCart);
     }
   }

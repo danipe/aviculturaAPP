@@ -27,10 +27,10 @@
         <div margin-left>
           <div text-wrap>{{ item.name }}</div>
           <div class="text-sm"> <span color="gray">{{ item.variation_name }}</span> </div>
-          <div padding-bottom> <span class="pull-right" [innerHTML]="appConfig.Shop_Currency_format+item.price"></span>
+          <div padding-bottom> <span class="pull-right" [innerHTML]="appConfig.Shop_Currency_format+item.price_html"></span>
             <div class="clear"></div>
           </div>
-          <div>
+          <div>  
             <div class="input-qty"> 
               <span class="btn" (click)="subQuantity(item)">
                 <ion-icon name="ios-remove"></ion-icon>
