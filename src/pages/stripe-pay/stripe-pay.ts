@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { NavController, NavParams, AlertController, ViewController, LoadingController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
@@ -8,6 +8,7 @@ import 'rxjs/add/observable/throw';
 import { Http, Headers } from '@angular/http';
 import { AppConfig } from '../../app/app-config';
 import { TranslateService } from '@ngx-translate/core';
+import { CardIO } from 'ionic-native';
 import moment from 'moment';
 declare var Stripe;
 
@@ -27,15 +28,15 @@ export class StripePayPage {
   card_cvc = '';
   card_exp_month = '';
   card_exp_year = '';
-
   total = 0;
   desc = '';
   max_year = 0;
-
+  count = 0;
   loadingModal: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http, public appConfig: AppConfig, public alertCtrl: AlertController,
-    public viewCtrl: ViewController, public loadingCtrl: LoadingController, public translateService: TranslateService) {
+    public viewCtrl: ViewController, public loadingCtrl: LoadingController, public translateService: TranslateService,public cardIO: CardIO) {
+    
     var now = moment();
     this.card_exp_month = moment(now.format(), moment.ISO_8601).format();
     this.card_exp_year = moment(now.format(), moment.ISO_8601).format();
@@ -46,7 +47,23 @@ export class StripePayPage {
 
   }
 
+  onSearchChange(event) {  
+   this.count++;
+    if(this.count == 3){
+        var reformat = event.target.value.replace(/(\d{4}\s*)/g, function(match){
+            if(match.match(/\s/)){
+              return match;
+            }
+            return match + " ";
+    });
+    this.card_number = reformat; 
+    this.count = 0;
+    }
+  }
 
+  avoidSpace(event: any) {
+    var k = event ? event.which : event.keyCode; if (k == 32) return false;
+  } 
   pay() {
     this.translateService.get(['Notice', 'OK', 'Require_Card_Number', 'Require_Expire_Month', 'Require_Expire_Year', 'Require_Card_Cvc', 'Loading']).subscribe(value => {
       if (this.card_number.trim().length == 0) {
@@ -153,7 +170,41 @@ export class StripePayPage {
           }).present();
         });
     });
+  }
 
+  cardScan() {
+    CardIO.canScan()
+      .then(
+        (res: boolean) => {
+          if(res){
+            let options = {
+              requireExpiry: true,
+              requireCVV: true,
+              useCardIOLogo: true,
+              requirePostalCode: false
+            };
+            CardIO.scan(options)
+            .then(
+              (res: any) => {
+                this.card_number = res["cardNumber"];
+                //Workaround como la copa de un pino blanco
+                //Arreglar el formato que recibo por parte de CardIO, y pasarle toISOString con el date cambiado.
+                if(res["expiryMonth"] == 10 || res["expiryMonth"] == 11 || res["expiryMonth"] == 12){
+                  console.log("Es mayor que uno");
+                  this.card_exp_month = "2017-"+res["expiryMonth"]+"-30T00:45:12+02:00";
+                  this.card_exp_year = res["expiryYear"]+"-"+res["expiryMonth"]+"-30T00:45:12+02:00";
+                  console.log(this.card_exp_year);
+                }else{
+                  console.log("Es menor que uno");
+                  this.card_exp_month = "2017-0"+res["expiryMonth"]+"-30T00:45:12+02:00";
+                  this.card_exp_year = res["expiryYear"]+"-0"+res["expiryMonth"]+"-30T00:45:12+02:00";
+                  console.log(this.card_exp_year);
+                }
+                this.card_cvc = res["cvv"];
+              });
+          }
+        }
+      );
   }
 
   handleError(error, e) {

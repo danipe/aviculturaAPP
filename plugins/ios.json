@@ -10,9 +10,6 @@
         "com.paypal.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.geotap.avicultura"
         },
-        "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.geotap.avicultura"
         },
@@ -41,11 +38,10 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "com.geotap.avicultura"
-        }
-    },
-    "dependent_plugins": {
+        },
         "card.io.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.geotap.avicultura"
         }
-    }
+    },
+    "dependent_plugins": {}
 }

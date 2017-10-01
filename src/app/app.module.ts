@@ -41,6 +41,8 @@ import { UserService } from '../providers/user-service';
 import { SowService } from '../providers/sow-service';
 import { ProductCardComponent } from '../components/product-card/product-card';
 
+import { CardIO } from 'ionic-native';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -114,7 +116,7 @@ import { ProductCardComponent } from '../components/product-card/product-card';
     ThanksPage,
     CartTabPage, StripePayPage, AttributePage
   ],
-  providers: [WoocommerceService, AppConfig, CountryService, TbarService, UserService, SowService]
+  providers: [WoocommerceService, AppConfig, CountryService, TbarService, UserService, SowService,CardIO]
 })
 export class AppModule { }
 

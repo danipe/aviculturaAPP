@@ -7,14 +7,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-console": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-console@~1.0.4"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
@@ -52,7 +44,7 @@
             "type": "registry",
             "id": "card.io.cordova.mobilesdk"
         },
-        "is_top_level": false,
+        "is_top_level": true,
         "variables": {}
     },
     "onesignal-cordova-plugin": {
@@ -97,5 +89,13 @@
             "APP_ID": "186644988509120",
             "APP_NAME": "ionic"
         }
+    },
+    "cordova-plugin-console": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-console"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

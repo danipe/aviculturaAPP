@@ -41,11 +41,10 @@
         },
         "onesignal-cordova-plugin": {
             "PACKAGE_NAME": "com.geotap.avicultura"
-        }
-    },
-    "dependent_plugins": {
+        },
         "card.io.cordova.mobilesdk": {
             "PACKAGE_NAME": "com.geotap.avicultura"
         }
-    }
+    },
+    "dependent_plugins": {}
 }

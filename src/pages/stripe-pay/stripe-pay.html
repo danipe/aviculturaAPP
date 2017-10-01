@@ -18,23 +18,25 @@
   <ion-list>
     <ion-item>
       <ion-label floating>{{ 'Card_Number' | translate }}</ion-label>
-      <ion-input min="16" max="19" type="number" [(ngModel)]="card_number"></ion-input>
+      <ion-input type="text" [(ngModel)]="card_number" (keydown)="onSearchChange($event)" [maxlength]="19"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>{{ 'Expiry_Month' | translate }}</ion-label>
       <ion-datetime displayFormat="MM" [(ngModel)]="card_exp_month"></ion-datetime>
-
     </ion-item>
     <ion-item>
       <ion-label floating>{{ 'Expiry_Year' | translate }}</ion-label>
-      <ion-datetime displayFormat="YYYY" [(ngModel)]="card_exp_year" max="{{max_year}}" min="2017"></ion-datetime>
+      <ion-datetime displayFormat="YYYY" [(ngModel)]="card_exp_year" max="{{max_year}}"></ion-datetime>
     </ion-item>
     <ion-item>
-       <ion-label floating>{{ 'CVC' | translate }}</ion-label>
-      <ion-input min="3" max="3" type="number" [(ngModel)]="card_cvc"></ion-input>
+      <ion-label floating>{{ 'CVC' | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="card_cvc" min="3" [maxlength]="4"></ion-input>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>
-  <button ion-button full color="primary" (click)="pay()">{{ 'Pay' | translate }}</button>
+  <button ion-button full color="primary" (click)="cardScan()"> 
+    <span> Escanear tarjeta </span><br>
+  </button>
+  <button ion-button full color="favorite" (click)="pay()">{{ 'Pay' | translate }}</button>
 </ion-footer>

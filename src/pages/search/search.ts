@@ -49,7 +49,7 @@ export class SearchPage {
       let results = [];
       //console.log(x);
       for (var i = 0; i < this.products.length; ++i) {
-        if(this.products[i].name.trim().toLowerCase().search(x) >= 0){
+        if(this.products[i].name.toLowerCase().search(x.toLowerCase()) >= 0){
           //console.log(this.products[i].name);
           results.push(this.products[i]);
           this.noResult = false;
