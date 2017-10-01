@@ -52,7 +52,6 @@ export class ProductDetailsPage {
       loop: true,
       autoplay: 2000
     };
-
   }
 
   checkCart() {
@@ -103,7 +102,7 @@ export class ProductDetailsPage {
       //     this.hasVariation = true;
       //   }
       this.product = this.navParams.get('product');
-          // console.log(this.product);
+      // console.log(this.product);
       this.checkCart();
 
       if(this.product.attributes.length > 0){
@@ -393,7 +392,10 @@ export class ProductDetailsPage {
   }
 
   viewProduct(product) {
-    this.navCtrl.push(ProductDetailsPage, { product: product });
+    if(product.catalog_visibility!="hidden") {
+      this.navCtrl.push(ProductDetailsPage, { product: product });
+    }
+    
   }
 
   getSelectedVariation() {

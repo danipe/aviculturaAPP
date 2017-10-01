@@ -56,7 +56,7 @@
       <ion-list-header  class="item-header">
          Contenido de la suscripción
       </ion-list-header>
-      <ion-item *ngFor="let item of product.bundled_items" class="desc" (click)="viewProduct(item)">
+      <ion-item *ngFor="let item of product.bundled_items" class="desc" (click)="viewProduct(item)" [ngClass]="{'disabled-product': item.catalog_visibility==='hidden'}">
         <!-- <div *ngFor="let image of item.images">
           <img src="{{image.src}}" />
         </div> -->
