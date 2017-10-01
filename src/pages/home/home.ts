@@ -47,7 +47,8 @@ export class HomePage {
     this.translateService.get(['Notice', 'NetWork_Error', 'OK']).subscribe(
       value => {
         this.wooService.getProducts({ page: this.page, per_page: this.per_page, fields: 'id,title' }).then((products: Array<any>) => {
-          this.products = products;
+          // this.products = products;
+          this.checkVisibleProducts(products);
           if (products.length < this.per_page) {
             this.has_more = false;
           }
@@ -67,6 +68,15 @@ export class HomePage {
       });
   }
 
+  checkVisibleProducts(products: any){
+    this.products = new Array<any>();
+    for(let product of products) {
+      if(product.catalog_visibility!="hidden") {
+        this.products.push(product);
+      }
+    }
+  }
+
   getProductsAndSlider() {
     this.translateService.get(['Notice', 'Loading', 'NetWork_Error', 'OK']).subscribe(
       value => {
@@ -76,11 +86,7 @@ export class HomePage {
         this.loadingModal.present();
         this.wooService.getProducts({ page: this.page, per_page: this.per_page, fields: 'id,title' }).then((products: Array<any>) => {
           
-          for(let product of products) {
-            if(product.catalog_visibility!="hidden") {
-              this.products.push(product);
-            }
-          }
+          this.checkVisibleProducts(products);
           console.log(products);
           if (products.length < this.per_page) {
             this.has_more = false;
