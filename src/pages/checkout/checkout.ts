@@ -243,13 +243,14 @@ export class CheckoutPage {
         content: value['Loading']
       });
       this.loadingModal.present();
+
       PayPal.init({
         "PayPalEnvironmentProduction": this.appConfig.PayPal_EnvironmentProduction,
         "PayPalEnvironmentSandbox": this.appConfig.PayPal_EnvironmentSandbox
       }).then(() => {
         PayPal.prepareToRender(this.appConfig.Paypal_Environments, new PayPalConfiguration({})).then(() => {
 
-          let payment = new PayPalPayment((String)(Number.parseFloat(this.total) + Number.parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost)), this.appConfig.Shop_Currency, this.desc, 'sale');
+          let payment = new PayPalPayment((String)(this.totalWithShipping), this.appConfig.Shop_Currency, this.desc, 'sale');
           PayPal.renderSinglePaymentUI(payment).then((resp) => {
             // Successfully paid
             this.loadingModal.dismiss();
@@ -291,7 +292,7 @@ export class CheckoutPage {
     //console.log("CHECKOUT2"+Number.parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost));
     let modal = this.modalCtrl.create(StripePayPage, {
       // TODO: Hay que sumarle el precio del envio falta revisar todo esto
-      "total": this.total,
+      "total": this.totalWithShipping,
       "desc": this.desc
     }, { showBackdrop: true, enableBackdropDismiss: true });
 
