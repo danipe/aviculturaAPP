@@ -52,7 +52,6 @@ export class CartTabPage {
       this.storage.get('oddwolves-cart').then((data) => {
         if (data) {
           this.cart = JSON.parse(data);
-          console.log(this.cart);
           if (this.cart.length > 0) {
             var includeID = '';
             this.cart.forEach(element => {
@@ -65,27 +64,25 @@ export class CartTabPage {
               content: value['Loading']
             });
             this.loadingModal.present();
-           // this.wooService.getProducts({ include: includeID }).then((products: Array<any>) => {
-              this.products = this.wooService.products;
-
+              var products = this.wooService.products;
               this.cart.forEach(element => {
-                var findProduct = this.products.find((product) => {
-                  return product.id == element.product_id;
+              var findProduct = products.find((product) => {
+                return product.id == element.product_id;
+              });
+
+              element.name = findProduct.name;
+              element.price_html = findProduct.price_html;
+
+              if (findProduct.variations.length > 0) {
+                var findVariation = findProduct.variations.find(variation => {
+                  return variation.id == element.variation_id;
                 });
-
-                element.name = findProduct.name;
-                if (findProduct.variations.length > 0) {
-
-                  var findVariation = findProduct.variations.find(variation => {
-                    return variation.id == element.variation_id;
-                  });
-                  element.thumb = findVariation.image[0].src;
-                  element.price = findVariation.price;
-                } else {
-                  element.thumb = findProduct.images[0].src;
-                  element.price = findProduct.price;
-                }
-             // });
+                element.thumb = findVariation.image[0].src;
+                element.price_iva = parseFloat(this.htmlToPlainText(findVariation.price_html));
+              } else {
+                element.thumb = findProduct.images[0].src;
+                element.price_iva = parseFloat(this.htmlToPlainText(findProduct.price_html));
+              }
               this.storage.set('oddwolves-cart', JSON.stringify(this.cart));
               this.isEmpty = false;
               this.loadingModal.dismiss();
@@ -95,7 +92,7 @@ export class CartTabPage {
 
             });
             this.cart.forEach(product => {
-              this.subTotal += product.price * product.quantity;
+              this.subTotal += product.price_iva * product.quantity;
             });
             this.total = this.subTotal;
           } else {
@@ -107,7 +104,6 @@ export class CartTabPage {
         }
       });
     });
-
   }
 
   accMul(arg1, arg2) {
@@ -115,6 +111,10 @@ export class CartTabPage {
     try { m += s1.split(".")[1].length } catch (e) { }
     try { m += s2.split(".")[1].length } catch (e) { }
     return Number(s1.replace(".", "")) * Number(s2.replace(".", "")) / Math.pow(10, m)
+  }
+
+  htmlToPlainText(text) {
+    return text ? String(text).replace(/<[^>]+>/gm, '').replace("&euro;","").replace(',', '.') : '';
   }
 
   order() {
@@ -144,7 +144,7 @@ export class CartTabPage {
     }
     this.subTotal = 0;
     this.cart.forEach(product => {
-      this.subTotal += this.accMul(product.price, product.quantity);
+      this.subTotal += this.accMul(product.price_iva, product.quantity);
     });
     this.total = this.subTotal;
     this.tbarService.cartBage = this.cart.length;
@@ -156,7 +156,6 @@ export class CartTabPage {
 
   inputChanged(item) {
     event.stopPropagation();
-
     if (isNaN(item.quantity) == true || item.quantity <= 1) {
       item.quantity = 1;
     }
@@ -164,7 +163,7 @@ export class CartTabPage {
     this.subTotal = 0;
     this.subTotal = 0;
     this.cart.forEach(product => {
-      this.subTotal += this.accMul(product.price, product.quantity);
+      this.subTotal += this.accMul(product.price_iva, product.quantity);
     });
     this.total = this.subTotal;
   }
@@ -180,7 +179,7 @@ export class CartTabPage {
     }
     this.subTotal = 0;
    this.cart.forEach(product => {
-      this.subTotal += this.accMul(product.price, product.quantity);
+      this.subTotal += this.accMul(product.price_iva, product.quantity);
     });
     this.total = this.subTotal;
   }
@@ -191,7 +190,7 @@ export class CartTabPage {
     this.storage.set('oddwolves-cart', JSON.stringify(this.cart));
     this.subTotal = 0;
     this.cart.forEach(product => {
-      this.subTotal += this.accMul(product.price, product.quantity);
+      this.subTotal += this.accMul(product.price_iva, product.quantity);
     });
     this.total = this.subTotal;
   }

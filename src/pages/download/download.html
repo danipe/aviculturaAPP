@@ -12,6 +12,7 @@
 <ion-content class="commonbg">
   <ion-card *ngFor="let download of downloadList">
     <ion-card-content>
+      <img class="img" src="{{download.src}}"/>
       <ion-card-title>
         {{download.product_name}}
       </ion-card-title>

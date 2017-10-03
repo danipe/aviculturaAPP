@@ -19,6 +19,8 @@ import { InAppBrowser } from 'ionic-native';
 export class DownloadPage {
   downloadList: Array<any>;
   loadingModal: any;
+  findProduct: any;
+  products: any;
   constructor(
     public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -38,7 +40,13 @@ export class DownloadPage {
       this.wooService.getAllDownloads(this.userService.id).then((
         downloadList: Array<any>) => {
           this.downloadList = downloadList;
-          console.log(this.downloadList);
+          var products = this.wooService.products;
+          this.downloadList.forEach(element => {
+            this.findProduct = products.find((product) => {
+              return product.id == element.product_id;
+            });
+            element["src"] = this.findProduct.images[0].src;
+          });
           this.loadingModal.dismiss();
       }, (reson) => {
         this.loadingModal.dismiss();
@@ -46,10 +54,8 @@ export class DownloadPage {
     });
   }
   openUrl(url){
-    console.log(url);
-        this.platform.ready().then(() => {
-            let browser = new InAppBrowser(url,'_blank','location=no');
-
-        });
+    this.platform.ready().then(() => {
+        let browser = new InAppBrowser(url,'_blank','location=no');
+    });
   }
 }

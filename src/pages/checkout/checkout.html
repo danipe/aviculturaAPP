@@ -38,9 +38,6 @@
       <ion-item>
         <ion-input type="text" placeholder="{{ 'Town_City' | translate }}" [(ngModel)]="shippingAddress.city"></ion-input>
       </ion-item>
-    <!--   <ion-item>
-        <ion-input type="text" placeholder="{{ 'State' | translate }}" [(ngModel)]="shippingAddress.state"></ion-input>
-      </ion-item> -->
       <ion-item>
         <ion-input type="tel" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="shippingAddress.zip"></ion-input>
       </ion-item>
@@ -75,9 +72,6 @@
       <ion-item>
         <ion-input type="text" placeholder="{{ 'Town_City' | translate }}" [(ngModel)]="billingAddress.city"></ion-input>
       </ion-item>
-<!--       <ion-item>
-        <ion-input type="text" placeholder="{{ 'State' | translate }}" [(ngModel)]="billingAddress.state"></ion-input>
-      </ion-item> -->
       <ion-item>
         <ion-input type="tel" placeholder="{{ 'Zip_Code' | translate }}" [(ngModel)]="billingAddress.zip"></ion-input>
       </ion-item>
@@ -95,7 +89,7 @@
       <ion-item-divider color="primary"> Total</ion-item-divider>
       <ion-item>
         <ion-label> 
-         {{ totalWithShipping }} <span [innerHTML]="appConfig.Shop_Currency_format"></span> 
+         {{ totalWithShipping | number: '1.2-2' }} <span [innerHTML]="appConfig.Shop_Currency_format"></span> 
          <span *ngIf="isFreeShipping == false" class="pull-right">(Envio incluido)</span>
         </ion-label>
       </ion-item>

@@ -7,7 +7,7 @@ export class AppConfig {
   Shop_Name = "";//no need set,will get from your website
   Shop_Version = "1.0";
   Shop_Language = 'es';//change to your laguage,please check the document to learn how to translate.
-  Shop_URL = "https://www.aviculturaderaza.com";//set your website url,eg:"http://www.yousite.com"
+  Shop_URL = "https://www.aviculturaderaza.com/";//set your website url,eg:"http://www.yousite.com"
   Shop_ConsumerKey = "ck_9a4b429418121817e633ba6d51b0977c2940cacf";//woocommerce rest api ConsumerKey
   Shop_ConsumerSecret = "cs_613d03e1e47dee6dd98c7df36bd132cc624b9940";//woocommerce rest api ConsumerSecret
   Shop_Currency = "EUR";//no need setting,will get from your Website

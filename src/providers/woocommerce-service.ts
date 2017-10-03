@@ -504,6 +504,8 @@ export class CartProduct {
   public product_id: number;
   public name: string;
   public price: number;
+  public price_iva: number;
+  public price_html: string;
   public quantity: number;
   public variation_id: number;
   public variations:any;
@@ -513,6 +515,8 @@ export class CartProduct {
   constructor() {
     this.name = '';
     this.price = 0;
+    this.price_iva = 0;
+    this.price_html = '';
     this.product_id = 0;
     this.quantity =0;
     this.variation_id = 0;

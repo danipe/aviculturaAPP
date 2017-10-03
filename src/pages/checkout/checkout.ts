@@ -70,7 +70,7 @@ export class CheckoutPage {
       this.totalWithShipping = parseFloat(this.navParams.get('total'));
     }else{
       this.isFreeShipping = false;
-      this.totalWithShipping = parseFloat(this.navParams.get('total')) + parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost);
+      this.totalWithShipping = parseFloat(this.navParams.get('total')) + parseFloat(this.appConfig.Shop_Shipping[this.selShipMethod].cost.replace(',', '.'));
     }
     this.desc = this.navParams.get('description');
   }

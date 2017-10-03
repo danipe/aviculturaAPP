@@ -180,7 +180,6 @@ export class StripePayPage {
             let options = {
               requireExpiry: true,
               requireCVV: true,
-              useCardIOLogo: true,
               requirePostalCode: false
             };
             CardIO.scan(options)
@@ -190,15 +189,11 @@ export class StripePayPage {
                 //Workaround como la copa de un pino blanco
                 //Arreglar el formato que recibo por parte de CardIO, y pasarle toISOString con el date cambiado.
                 if(res["expiryMonth"] == 10 || res["expiryMonth"] == 11 || res["expiryMonth"] == 12){
-                  console.log("Es mayor que uno");
                   this.card_exp_month = "2017-"+res["expiryMonth"]+"-30T00:45:12+02:00";
                   this.card_exp_year = res["expiryYear"]+"-"+res["expiryMonth"]+"-30T00:45:12+02:00";
-                  console.log(this.card_exp_year);
                 }else{
-                  console.log("Es menor que uno");
                   this.card_exp_month = "2017-0"+res["expiryMonth"]+"-30T00:45:12+02:00";
                   this.card_exp_year = res["expiryYear"]+"-0"+res["expiryMonth"]+"-30T00:45:12+02:00";
-                  console.log(this.card_exp_year);
                 }
                 this.card_cvc = res["cvv"];
               });

@@ -29,7 +29,7 @@
           <div margin-left>
             <div text-wrap>{{ item.name }}</div>
             <div class="text-sm"> <span color="gray">{{ item.variation_name }}</span> </div>
-            <div padding-bottom> <span class="pull-right" [innerHTML]="appConfig.Shop_Currency_format+item.price"></span>
+            <div padding-bottom> <span class="pull-right" [innerHTML]="item.price_html"></span>
               <div class="clear"></div>
             </div>
             <div>
@@ -56,6 +56,8 @@
   <div class="placehold"></div>
 </ion-content>
 <ion-footer class="cart-footer" padding>
-  <ion-title> <span color="gray">{{ 'Total' | translate }}</span> <br/> <span class="bold" color="danger"> <b [innerHTML]="appConfig.Shop_Currency_format"></b>{{ total}}</span>    </ion-title>
+  <ion-title> <span color="gray">{{ 'Total' | translate }}</span> <br/> <span class="bold" color="danger"> 
+    <b [innerHTML]="appConfig.Shop_Currency_format"></b>{{ total | number : '1.2-2'}}</span>    
+  </ion-title>
   <ion-buttons end> <button ion-button color="danger" [disabled]="!cart || cart.length==0" (click)="checkout()">       {{ 'CHECKOUT' | translate }}    </button>    </ion-buttons>
 </ion-footer>
