@@ -153,6 +153,7 @@ export class WoocommerceService {
         return Observable.throw(err);
       }).map(res => res.json()).subscribe(data => {
         if (data) {
+          console.log(data);
           service.cachedData = data;
           resolve(service.cachedData);
         }

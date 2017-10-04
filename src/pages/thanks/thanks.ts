@@ -77,7 +77,9 @@ export class ThanksPage {
                           'product_id': p.product_id,
                           'quantity': 1,
                           'variation_id': p.product_id,
-                          'variations': []
+                          'variations': [],
+                          "total": "0",
+                          "price": "0"
                         });
                   });
                 }
