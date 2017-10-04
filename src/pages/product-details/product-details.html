@@ -51,6 +51,11 @@
         {{attribute.name}}<span item-right>{{getSelectedOption(attribute.name)}}</span>
       </button>
     </ion-list>
+    <ion-list *ngIf="!this.product?.in_stock">
+      <ion-list-header class="out-of-stock">
+        Fuera de Stock
+      </ion-list-header>
+    </ion-list>
     <!-- Si es un pack, mostramos los productos que contienen el pack -->
     <ion-list *ngIf="product.bundled_items.length>0">
       <ion-list-header  class="item-header">
@@ -66,7 +71,6 @@
         </span>
       </ion-item>
     </ion-list>
-
   </div>
 </ion-content>
 <ion-footer border-top>
@@ -82,7 +86,7 @@
         </ion-chip>
       </ion-col>
       <ion-col col-6 class="chip-button">
-        <ion-chip [ngClass]="{'chip-enable': (selVariation!=null || hasVariation!=true) && !this.inCart}" (click)="addToCartArray()">
+        <ion-chip [ngClass]="{'chip-enable': (selVariation!=null || hasVariation!=true) && !this.inCart && this.product?.in_stock}" (click)="addToCartArray()">
           <ion-label>{{ 'Add_to_cart' | translate }}</ion-label>
         </ion-chip>
       </ion-col>

@@ -149,12 +149,15 @@ export class ProductDetailsPage {
 
   addToCartArray() {
     this.checkCart();
-    if(!this.inCart) {
+    if(!this.inCart ) {
       // console.log('deberia meter un id al array')
-      this.addCartClip();
-      this.wooService.cart.push(this.product);
-      this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
-      this.inCart=true;
+      if(this.product.in_stock) {
+        this.addCartClip();
+        this.wooService.cart.push(this.product);
+        this.storage.set('virtual-cart', JSON.stringify(this.wooService.cart));
+        this.inCart=true;
+      }
+      
     } else {
       this.alertCtrl.create({
           title: 'Atención',
