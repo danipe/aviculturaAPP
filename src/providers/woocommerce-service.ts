@@ -141,6 +141,7 @@ export class WoocommerceService {
   }
 
   createOrder(params, data) {
+    console.log(data);
     var service = this;
     let url = service.appConfig.Shop_URL + "/wc-api/v3/orders";
     url = this.initUrl(url, params);

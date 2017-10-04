@@ -69,12 +69,26 @@ export class ThanksPage {
             this.storage.get('oddwolves-cart').then((data) => {
               var cartProductArray = JSON.parse(data);
               cartProductArray.forEach(element => {
+                
+                if(this.wooService.products.find(p => p.id == element.product_id).bundled_items.length > 0) {
+                  this.wooService.products.find(p => p.id == element.product_id).bundled_items.forEach(p => {
+                    console.log(p);
+                      line_items.push({
+                          'product_id': p.product_id,
+                          'quantity': 1,
+                          'variation_id': p.product_id,
+                          'variations': []
+                        });
+                  });
+                }
+                
                 line_items.push({
-                  'product_id': element.product_id,
-                  'quantity': element.quantity,
-                  'variation_id': element.variation_id,
-                  'variations': element.variations
-                });
+                    'product_id': element.product_id,
+                    'quantity': element.quantity,
+                    'variation_id': element.variation_id,
+                    'variations': element.variations
+                  });
+                
               });
 
               var payment_details = {

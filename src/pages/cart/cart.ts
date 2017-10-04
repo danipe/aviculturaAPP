@@ -45,6 +45,7 @@ export class CartPage {
         this.subTotal = 0;
         this.total = 0;
         this.shipTotal = 0;
+        
         this.translateService.get(['Loading']).subscribe(value => {
           this.storage.get('oddwolves-cart').then((data) => {
             if (data) {

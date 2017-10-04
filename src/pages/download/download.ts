@@ -45,7 +45,9 @@ export class DownloadPage {
             this.findProduct = products.find((product) => {
               return product.id == element.product_id;
             });
-            element["src"] = this.findProduct.images[0].src;
+            if(this.findProduct != null){
+              element["src"] = this.findProduct.images[0].src;
+            }
           });
           this.loadingModal.dismiss();
       }, (reson) => {
