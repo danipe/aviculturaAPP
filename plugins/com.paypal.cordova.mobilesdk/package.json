@@ -1,7 +1,57 @@
 {
-  "name": "com.paypal.cordova.mobilesdk",
-  "version": "3.3.1",
-  "description": "This plugin allows to add to add PayPal Payments to your application using PayPal Mobile SDK Native library",
+  "_args": [
+    [
+      {
+        "raw": "com.paypal.cordova.mobilesdk@~3.3.1",
+        "scope": null,
+        "escapedName": "com.paypal.cordova.mobilesdk",
+        "name": "com.paypal.cordova.mobilesdk",
+        "rawSpec": "~3.3.1",
+        "spec": ">=3.3.1 <3.4.0",
+        "type": "range"
+      },
+      "/Users/sergiomoreno/aviculturaAPP/node_modules"
+    ]
+  ],
+  "_from": "com.paypal.cordova.mobilesdk@>=3.3.1 <3.4.0",
+  "_id": "com.paypal.cordova.mobilesdk@3.3.1",
+  "_inCache": true,
+  "_location": "/com.paypal.cordova.mobilesdk",
+  "_nodeVersion": "5.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/com.paypal.cordova.mobilesdk-3.3.1.tgz_1474812230599_0.10983977257274091"
+  },
+  "_npmUser": {
+    "name": "paypal",
+    "email": "DL-PP-NODEJS-SDK@paypal.com"
+  },
+  "_npmVersion": "3.7.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "com.paypal.cordova.mobilesdk@~3.3.1",
+    "scope": null,
+    "escapedName": "com.paypal.cordova.mobilesdk",
+    "name": "com.paypal.cordova.mobilesdk",
+    "rawSpec": "~3.3.1",
+    "spec": ">=3.3.1 <3.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/com.paypal.cordova.mobilesdk/-/com.paypal.cordova.mobilesdk-3.3.1.tgz",
+  "_shasum": "2352ab9bad65709605d93bc9736706eacef417ab",
+  "_shrinkwrap": null,
+  "_spec": "com.paypal.cordova.mobilesdk@~3.3.1",
+  "_where": "/Users/sergiomoreno/aviculturaAPP/node_modules",
+  "author": {
+    "name": "paypal"
+  },
+  "bugs": {
+    "url": "https://github.com/paypal/PayPal-Cordova-Plugin/issues"
+  },
   "cordova": {
     "id": "com.paypal.cordova.mobilesdk",
     "platforms": [
@@ -9,10 +59,22 @@
       "android"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/paypal/PayPal-Cordova-Plugin.git"
+  "dependencies": {},
+  "description": "This plugin allows to add to add PayPal Payments to your application using PayPal Mobile SDK Native library",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "2352ab9bad65709605d93bc9736706eacef417ab",
+    "tarball": "https://registry.npmjs.org/com.paypal.cordova.mobilesdk/-/com.paypal.cordova.mobilesdk-3.3.1.tgz"
   },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "gitHead": "440b8efa8ea0eadab9f3d6b7c4e489f2129d5ebf",
+  "homepage": "https://github.com/paypal/PayPal-Cordova-Plugin#readme",
   "keywords": [
     "paypal",
     "sdk",
@@ -21,16 +83,24 @@
     "cordova-ios",
     "cordova-android"
   ],
-  "engines": [
+  "license": "BSD License, see LICENSE.md for details",
+  "maintainers": [
     {
-      "name": "cordova",
-      "version": ">=3.0.0"
+      "name": "braebot",
+      "email": "braebot@gmail.com"
+    },
+    {
+      "name": "paypal",
+      "email": "DL-PP-NODEJS-SDK@paypal.com"
     }
   ],
-  "author": "paypal",
-  "license": "BSD License, see LICENSE.md for details",
-  "bugs": {
-    "url": "https://github.com/paypal/PayPal-Cordova-Plugin/issues"
+  "name": "com.paypal.cordova.mobilesdk",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/paypal/PayPal-Cordova-Plugin.git"
   },
-  "homepage": "https://github.com/paypal/PayPal-Cordova-Plugin#readme"
+  "scripts": {},
+  "version": "3.3.1"
 }

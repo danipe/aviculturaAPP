@@ -7,40 +7,11 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.paypal.cordova.mobilesdk": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-facebook4": {
-            "APP_ID": "186644988509120",
-            "APP_NAME": "ionic",
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
+        "cordova-plugin-ionic-webview": {
+            "PACKAGE_NAME": "com.geotap.aviculturaderaza"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "onesignal-cordova-plugin": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
-        },
-        "card.io.cordova.mobilesdk": {
-            "PACKAGE_NAME": "com.geotap.avicultura"
+            "PACKAGE_NAME": "com.geotap.aviculturaderaza"
         }
     },
     "dependent_plugins": {}
