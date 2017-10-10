@@ -2,6 +2,9 @@
   <div class="badge" *ngIf="product.on_sale">
     <span class="sale">{{ 'OnSale' | translate }}</span>
   </div>
+  <div class="badge" *ngIf="product.categories[0] != null">
+      <span class="sale">Suscripción</span>
+    </div>
   <div class="img" [ngStyle]="{'background-image': 'url('+product.images[0].src+')'}">
   </div>
   <div class="padding-xs" text-center>

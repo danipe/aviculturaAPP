@@ -23,8 +23,9 @@
       <ion-item *ngFor="let product of products" (click)="viewProduct(product)">
         <ion-thumbnail item-left> <img src="{{product.images[0].src}}"> </ion-thumbnail>
         <h2>{{product.name}}</h2>
-        <p><span [innerHTML]="appConfig.Shop_Currency_format"></span>{{product.price}}</p>
+        <p><span [innerHTML]="product.price_html"></span></p>
         <ion-icon name="trash" color="primary" item-right (click)="deleteProduct(product)"></ion-icon>
+        <ion-icon name="share" color="greyLight" item-right (click)="share(product)"></ion-icon>        
       </ion-item>
     </ion-list>
   </div>

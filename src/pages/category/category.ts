@@ -20,89 +20,101 @@ export class CategoryPage {
   loadingModal: any;
   categories: Array<any>;
   errorModal: any;
+  page: number;
+  per_page: number;
+  has_more: boolean;
+  slides: Array<any>;
+  load_slide_end: boolean;
+  load_products_end: boolean;
+  showSlide = false;
+  products: Array<any> = new Array<any>();
   constructor(public navCtrl: NavController, public wooService: WoocommerceService, public loadingCtrl: LoadingController,
     public tbarService: TbarService, public alertCtrl: AlertController, public translateService: TranslateService) {
     this.categories = new Array<any>();
-
+    this.page = 1;
+    this.per_page = 10;
+    this.has_more = true;
+    this.load_products_end = false;
+    this.load_slide_end = false;
+    this.getSuscriptions();    
   }
 
   ionViewWillEnter() {
     this.tbarService.hideBar = false;
   }
 
-  ionViewDidLoad() {
-    this.translateService.get(['Loading', 'Notice', 'NetWork_Error', 'OK']).subscribe(value => {
-      this.loadingModal = this.loadingCtrl.create({
-        content: value['Loading']
-      });
-      this.loadingModal.present();
-      this.wooService.getStoreCategories({ page: 1, per_page: 100 }).then((categories: Array<any>) => {
-
-        var sortCategories = new Array<any>();
-        var noParentCat = categories.filter((value: any) => {
-          return value.parent == 0;
-        });
-
-        noParentCat.forEach(elementZero => {
-          elementZero.sort = 0;
-          sortCategories.push(elementZero);
-          var firstChildCat = categories.filter((value: any) => {
-            return value.parent == elementZero.id;
+  doRefresh(refresher) {
+    this.page=1;
+    this.translateService.get(['Notice', 'NetWork_Error', 'OK']).subscribe(
+      value => {
+        this.wooService.getProducts({ page: this.page, per_page: this.per_page, fields: 'id,title' }).then((products: Array<any>) => {
+          // this.products = products;
+          this.checkVisibleProducts(products);
+          if (products.length < this.per_page) {
+            this.has_more = false;
+          }
+          else {
+            this.page++;
+          }
+          refresher.complete();
+        }, (reson) => {
+          refresher.complete();
+          this.alertCtrl.create({
+            title: value['Notice'],
+            message: value['NetWork_Error'],
+            buttons: [value['OK']]
           });
-          firstChildCat.forEach(elementFirst => {
-            elementFirst.sort = 1;
-            sortCategories.push(elementFirst);
-            var secondChildCat = categories.filter((value: any) => {
-              return value.parent == elementFirst.id;
-            });
-            secondChildCat.forEach(elementSecond => {
-              elementSecond.sort = 2;
-              sortCategories.push(elementSecond);
-            });
-          });
-        });
-        this.categories = sortCategories;
-        console.log(categories);
-        this.loadingModal.dismiss();
-      }, (error) => {
-        this.loadingModal.dismiss();
-        this.alertCtrl.create({
-          title: value['Notice'],
-          message: value['NetWork_Error'],
-          buttons: [value['OK']]
-        }).present();
-      });
-    });
 
+        });
+      });
   }
 
-  doRefresh(refresher) {
-    this.translateService.get(['Notice', 'NetWork_Error', 'OK']).subscribe(value => {
-      this.wooService.getStoreCategories({ page: 1, per_page: 100 }).then((categories: Array<any>) => {
-        categories.forEach(element => {
+  checkVisibleProducts(products: any){
+    this.products = new Array<any>();
+    for(let product of products) {
+      if(product.catalog_visibility!="hidden") {
+        this.products.push(product);
+      }
+    }
+  }
 
-        });
-        this.categories = categories;
+  getSuscriptions() {
+    this.products = this.wooService.products.filter((key: any) => key.categories[0] != null);
+  }
 
-        refresher.complete();
-      }, (reson) => {
-        this.alertCtrl.create({
-          title: value['Notice'],
-          message: value['NetWork_Error'],
-          buttons: [value['OK']]
-        }).present();
-        refresher.complete();
+  doInfinite(infiniteScroll) {
+    this.translateService.get(['Notice', 'NetWork_Error', 'OK']).subscribe(
+      value => {
+        if (this.has_more) {
+          this.wooService.getProducts({ page: this.page, per_page: this.per_page }).then((products: Array<any>) => {
+            products.forEach(p => {
+              this.products.push(p);
+            });
+
+            if (products.length < this.per_page) {
+              this.has_more = false;
+            }
+            else {
+              this.page++;
+            }
+            infiniteScroll.complete();
+          }, (reson) => {
+            infiniteScroll.complete();
+            this.alertCtrl.create({
+              title: value['Notice'],
+              subTitle: value['NetWork_Error'],
+              buttons: [value['OK']]
+            }).present();
+          });
+        }
+        else {
+          infiniteScroll.enable(false);
+        }
       });
-    });
-
   }
 
   openDetails(product) {
     this.navCtrl.push(ProductDetailsPage, { product: product });
-  }
-
-  openListings(catID) {
-    this.navCtrl.push(ListingsPage, { 'catID': catID });
   }
 
 }

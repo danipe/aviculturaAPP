@@ -7,6 +7,8 @@ import { TbarService } from '../../providers/tbar-service';
 import { WoocommerceService } from '../../providers/woocommerce-service';
 import { TranslateService } from '@ngx-translate/core';
 import { TabsPage } from '../tabs/tabs';
+import { SocialSharing } from 'ionic-native';
+
 /*
   Generated class for the Wishlist page.
 
@@ -19,6 +21,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class WishlistPage {
   products: any;
+  product: any;  
   wishlistProduct: any;
   loadingModal: any;
   isEmpty: boolean;
@@ -47,18 +50,15 @@ export class WishlistPage {
               includeID = includeID.substr(0, includeID.length - 1);
             }
 
-            this.wooService.getProducts({ include: includeID }).then((products: Array<any>) => {
-              this.products = products;
+            this.products = this.wooService.products.filter((product) => {
+              return product.id == includeID;
+            });
+            //this.wooService.getProducts({ include: includeID }).then((products: Array<any>) => {
+              //this.products = products;
               this.isEmpty = false;
               this.loadingModal.dismiss();
-            }, (reson) => {
-              this.loadingModal.dismiss();
-              this.alertCtrl.create({
-                title: value['Notice'],
-                message: value['NetWork_Error'],
-                buttons: [value['OK']]
-              }).present();
-            });
+            //}, (reson) => {
+            //});
           }
           else {
             this.isEmpty = true;
@@ -99,6 +99,33 @@ export class WishlistPage {
     });
     this.wishlistProduct.splice(findIndex, 1);
     this.storage.set('oddwolves-wishlist', JSON.stringify(this.wishlistProduct));
+  }
+
+
+  share(product) {
+    this.translateService.get(['Notice', 'Loading', 'NetWork_Error', 'OK', 'Share_Success', 'Share_Fail']).subscribe(value => {
+      this.loadingModal = this.loadingCtrl.create({
+        content: value['Loading']
+      });
+      this.loadingModal.present();
+
+      SocialSharing.share("Mira la revista tan genial de Avicultura de raza:  " + this.product.name + " por solo " + this.product.price + "€, para más detalles click en el link.",
+        this.product.name, null, this.product.permalink).then(() => {
+          this.loadingModal.dismiss();
+          this.alertCtrl.create({
+            title: value['Notice'],
+            message: value['Share_Success'],
+            buttons: [value['OK']]
+          }).present();
+        }).catch(() => {
+          this.loadingModal.dismiss();
+          this.alertCtrl.create({
+            title: value['Notice'],
+            message: value['Share_Fail'],
+            buttons: [value['OK']]
+          }).present();
+        });
+    });
   }
 
 }

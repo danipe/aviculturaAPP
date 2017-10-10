@@ -58,8 +58,17 @@ export class ProfilePage {
     modal.present();
   }
   openDownloadsPage(){
-    console.log("OpenDownloadsPage() opening");
-    this.navCtrl.push(DownloadPage,{ direction: 'forward'});
+    if (this.userService.isAuthenticated) {
+      this.navCtrl.push(DownloadPage,{ direction: 'forward'});
+    } else {
+      this.translateService.get(['Notice', 'No_Sign_In', 'OK']).subscribe(value => {
+        this.alertCtrl.create({
+          title: value['Notice'],
+          message: value['No_Sign_In'],
+          buttons: [value['OK']]
+        }).present();
+      });
+    }
   }
   openEditAddress() {
     if (this.userService.isAuthenticated) {

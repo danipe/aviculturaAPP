@@ -1,3 +1,131 @@
-product-card {
+product-card ion-content {
+    background: #e4e9ee !important;
+}
 
+product-card ion-slides {
+    height: 150px;
+}
+
+product-card ion-grid ion-row {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+product-card ion-grid ion-row ion-col .card {
+    overflow: hidden;
+    font-size: 0.9em;
+}
+
+product-card ion-grid ion-row ion-col .card .img {
+    height: 40vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+product-card ion-grid ion-row ion-col .card .title {
+    
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+
+product-card .padding-xs {
+    padding: 10px;
+}
+
+product-card .card.round {
+    overflow: hidden;
+}
+
+product-card .round {
+    border-radius: 5px;
+}
+
+product-card .card {
+    background: #FFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+product-card .badge {
+    position: relative;
+    z-index: 3;
+}
+
+product-card .badge>span {
+    position: absolute;
+    top: 5px !important;
+    right: 5px !important;
+    display: block;
+    background: #ccc;
+    color: white;
+    padding: 0 3px 0 10px;
+    font-size: 10px;
+    text-transform: uppercase;
+    line-height: 22px;
+    height: 20px !important;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+product-card .badge>span:before {
+    border-right-color: #cccccc;
+    content: "";
+    float: left;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    width: 0;
+    height: 0;
+    border-color: transparent #ccc transparent transparent;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+}
+
+product-card .badge>span:after {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 0px;
+    float: left;
+    width: 7px;
+    height: 7px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    background: #fff;
+}
+
+product-card .badge>span.sale:before {
+    border-right-color: orange;
+    border-color: transparent orange transparent transparent;
+}
+
+product-card .badge>span.sale {
+    background: orange;
+}
+
+product-card .badge>span.sale:after {
+    background: white;
+}
+
+product-card .badge>span.sold:before {
+    border-right-color: mediumseagreen;
+    border-color: transparent mediumseagreen transparent transparent;
+}
+
+product-card .badge>span.sold {
+    background: mediumseagreen;
+}
+
+product-card .badge>span.sold:after {
+    background: white;
+}
+
+product-card ins {
+    text-decoration: none;
+    color: red;
 }
