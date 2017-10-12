@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, Tabs } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-
+import { ProfilePage } from '../profile/profile';
 /**
  * Generated class for the SliderPage page.
  *
@@ -14,18 +14,18 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class SliderPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SliderPage');
   }
 
-  goToHome(){
-    this.navCtrl.setRoot(TabsPage,0);
+  goToLogin(){
+    this.navCtrl.push(TabsPage,4);    
   }
 
   skip() {
-    this.navCtrl.push(TabsPage);
+    this.navCtrl.push(TabsPage,0);
   }
 }

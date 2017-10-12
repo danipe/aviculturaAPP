@@ -87,7 +87,7 @@ export class HomePage {
         this.wooService.getProducts({ page: this.page, per_page: this.per_page, fields: 'id,title' }).then((products: Array<any>) => {
           
           this.checkVisibleProducts(products);
-          console.log(products);
+          //console.log(products);
           if (products.length < this.per_page) {
             this.has_more = false;
           }

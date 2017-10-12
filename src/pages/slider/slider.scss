@@ -9,7 +9,7 @@
   		background-color: #69BB7B;
   	}
   	.slide_3{
-  		background-color: #235D8D;
+  		background-color: rgb(223, 84, 84);
   	}
 
     ion-slide img {
@@ -55,7 +55,19 @@
         background:none !important;
         text-align:center;
         cursor:pointer;
+        font-size:15px;
+        color: white;
         z-index:5;
+    }
+
+    #login {
+      margin-top:5%;
+      color: white;
+      font-size:15px;
+      width:100%;
+      background:none !important;
+      text-align:center;
+      z-index:5;
     }
   }
 }

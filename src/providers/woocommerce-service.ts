@@ -24,7 +24,7 @@ export class WoocommerceService {
     this.cart = new Array<any>();
     this.storage.get('virtual-cart').then(cart => {
       cart = JSON.parse(cart);
-      console.log(cart);
+      //console.log(cart);
       if(cart != null){
         this.cart = cart;   
       }

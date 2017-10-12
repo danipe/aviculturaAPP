@@ -10,7 +10,7 @@
         "spec": ">=2.1.0 <2.2.0",
         "type": "range"
       },
-      "/Users/sergiomoreno/aviculturaAPP/node_modules"
+      "/Users/sergiomoreno/aviculturaAPP"
     ]
   ],
   "_from": "card.io.cordova.mobilesdk@>=2.1.0 <2.2.0",
@@ -45,7 +45,7 @@
   "_shasum": "583b9306f6f28ab54cd9d2c89fc35ed93e851488",
   "_shrinkwrap": null,
   "_spec": "card.io.cordova.mobilesdk@~2.1.0",
-  "_where": "/Users/sergiomoreno/aviculturaAPP/node_modules",
+  "_where": "/Users/sergiomoreno/aviculturaAPP",
   "author": {
     "name": "card.io"
   },

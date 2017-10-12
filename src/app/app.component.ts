@@ -9,6 +9,7 @@ import { UserService } from '../providers/user-service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SliderPage } from '../pages/slider/slider';
 import { LoginPage } from '../pages/login/login';
+import { ProductDetailsPage } from '../pages/product-details/product-details';
 import { RegisterPage } from '../pages/register/register';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -50,16 +51,16 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      StatusBar.styleLightContent();
       Keyboard.hideKeyboardAccessoryBar(false);
 
       this.storage.get('sliderPage').then((result) => {
         if(result){
-          this.rootPage = TabsPage;
+          this.rootPage = SliderPage;
           //this.rootPage = SliderPage;
         } else {
           this.rootPage = SliderPage;
-          this.storage.set('sliderPage', true);
+          this.storage.set('sliderPage',false);
         }
       });
 

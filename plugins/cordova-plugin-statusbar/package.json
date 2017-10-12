@@ -2,18 +2,18 @@
   "_args": [
     [
       {
-        "raw": "cordova-plugin-statusbar@2.2.3",
+        "raw": "cordova-plugin-statusbar@^2.2.3",
         "scope": null,
         "escapedName": "cordova-plugin-statusbar",
         "name": "cordova-plugin-statusbar",
-        "rawSpec": "2.2.3",
-        "spec": "2.2.3",
-        "type": "version"
+        "rawSpec": "^2.2.3",
+        "spec": ">=2.2.3 <3.0.0",
+        "type": "range"
       },
-      "/Users/sergiomoreno/aviculturaAPP/node_modules"
+      "/Users/sergiomoreno/aviculturaAPP"
     ]
   ],
-  "_from": "cordova-plugin-statusbar@2.2.3",
+  "_from": "cordova-plugin-statusbar@>=2.2.3 <3.0.0",
   "_id": "cordova-plugin-statusbar@2.2.3",
   "_inCache": true,
   "_location": "/cordova-plugin-statusbar",
@@ -29,13 +29,13 @@
   "_npmVersion": "3.10.10",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "cordova-plugin-statusbar@2.2.3",
+    "raw": "cordova-plugin-statusbar@^2.2.3",
     "scope": null,
     "escapedName": "cordova-plugin-statusbar",
     "name": "cordova-plugin-statusbar",
-    "rawSpec": "2.2.3",
-    "spec": "2.2.3",
-    "type": "version"
+    "rawSpec": "^2.2.3",
+    "spec": ">=2.2.3 <3.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "#USER",
@@ -44,8 +44,8 @@
   "_resolved": "https://registry.npmjs.org/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.2.3.tgz",
   "_shasum": "51c5e02ad433bebd0b0dc977a446eb91dfee1502",
   "_shrinkwrap": null,
-  "_spec": "cordova-plugin-statusbar@2.2.3",
-  "_where": "/Users/sergiomoreno/aviculturaAPP/node_modules",
+  "_spec": "cordova-plugin-statusbar@^2.2.3",
+  "_where": "/Users/sergiomoreno/aviculturaAPP",
   "author": {
     "name": "Apache Software Foundation"
   },

@@ -6,38 +6,36 @@
 -->
 <ion-slides pager="true">
 	<ion-slide class="slide_1">
-		<div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
-			<ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+		<div class="diag" style="background: url('assets/img/icon.svg') repeat-x">
+			<ion-icon ios="ios-arrow-dropright" md="md-arrow-dropright" color="primary"></ion-icon>
 		</div>
 		<div>
-			<h2>chat with others</h2>
-			<p>inspire and help each other reach fitness and diet goals.</p>
+			<h2>Avicultura de Raza</h2>
+			<p>Una aplicación creada para disfrutar de tu mundo favorito</p>
 		</div>
 	</ion-slide>
 
 	<ion-slide class="slide_2">
-		<div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
-			<ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+		<div class="diag" style="background: url('assets/img/icon.svg') repeat-x">
+			<ion-icon ios="ios-book" md="md-book" color="primary"></ion-icon>
 		</div>
 		<div>
-			<h2>chat with others</h2>
-			<p>inspire and help each other reach fitness and diet goals.</p>
+			<h2>Compra revistas</h2>
+			<p>Compra tantas revistas y suscripciones como desees</p>
 		</div>
 	</ion-slide>
 
 	<ion-slide class="slide_3">
-		<div class="diag" style="background: url('assets/img/icon.svg') no-repeat">
-			<ion-icon ios="ios-chatboxes" md="md-chatboxes" color="primary"></ion-icon>
+		<div class="diag" style="background: url('assets/img/icon.svg') repeat-x">
+			<ion-icon ios="ios-people" md="md-people" color="primary"></ion-icon>
 		</div>
 		<div>
-			<h2>chat with others</h2>
-			<p>inspire and help each other reach fitness and diet goals.</p>
+			<h2>Comparte contenido</h2>
+			<p>Puedes iniciar sesión con tu cuenta web así podrás ver tus revistas en todo momento</p>
+			<button ion-button outline small (click)="goToLogin()">
+				Iniciar sesión
+			</button>					
 		</div>
-		<ion-row>
-			<ion-col>
-				<button ion-button color="light" (click)="goToHome()">Empieza a usar Avicultura de Raza</button>
-			</ion-col>
-		</ion-row>
 	</ion-slide>
 </ion-slides>
 <button (click)="skip()" id="skip">Skip</button>

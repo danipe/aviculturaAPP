@@ -29,7 +29,7 @@
       <div>
     <div [innerHTML]="product.price_html"></div>
         <del ng-show="product.regular_price > 0 && product.on_sale"></del>
-        <span class="pull-right" (click)="share()">
+        <span class="pull-right" (click)="share(product)">
 	        		<ion-icon name="share" color="primary"></ion-icon> <b color="primary">Compartir</b>
 	        	</span>
       </div>

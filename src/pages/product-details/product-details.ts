@@ -93,7 +93,7 @@ export class ProductDetailsPage {
         content: value['Loading']
       });
       this.value = value;
-      this.loadingModal.present();
+      //this.loadingModal.present();
       // this.wooService.getSingleProduct(this.navParams.get('product')).then((product: any) => {
       //   this.product = product;
       //   this.attrArray = product.attributes;
@@ -198,11 +198,11 @@ export class ProductDetailsPage {
               }
               this.storage.set('oddwolves-cart', JSON.stringify(cartArray));
             } else {
-              var findIndex = cartArray.findIndex((element) => {
+              var findIndex2 = cartArray.findIndex((element) => {
                 return element.product_id == this.product.id
               });
               if (findIndex != -1) {
-                cartArray[findIndex].quantity++;
+                cartArray[findIndex2].quantity++;
               }
               else {
                 cartArray.push(this.createNewProduct());
@@ -331,22 +331,27 @@ export class ProductDetailsPage {
 
   }
 
-
-  share() {
+  htmlToPlainText(text) {
+    return text ? String(text).replace(/<[^>]+>/gm, '').replace("€","").replace("&euro;","").replace(',', '.') : '';
+  }
+  share(item) {
     this.translateService.get(['Notice', 'Loading', 'NetWork_Error', 'OK', 'Share_Success', 'Share_Fail']).subscribe(value => {
       this.loadingModal = this.loadingCtrl.create({
         content: value['Loading']
       });
       this.loadingModal.present();
 
-      SocialSharing.share("Mira la revista tan genial de Avicultura de raza:  " + this.product.name + " por solo " + this.product.price + this.currencySymbol.nativeElement.innerHTML + ", para más detalles click en el link.",
-        this.product.name, null, this.product.permalink).then(() => {
+      SocialSharing.share("Mira la revista tan genial de Avicultura de raza:  " + item.name + " por solo " + this.htmlToPlainText(item.price_html) +"€ , para más detalles click en el link.",
+        item.name, null, item.permalink).then(() => {
           this.loadingModal.dismiss();
           this.alertCtrl.create({
             title: value['Notice'],
             message: value['Share_Success'],
             buttons: [value['OK']]
           }).present();
+          setTimeout(() => {
+            this.loadingModal.dismiss();
+          }, 5000);
         }).catch(() => {
           this.loadingModal.dismiss();
           this.alertCtrl.create({

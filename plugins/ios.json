@@ -1,18 +1,31 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "card.io.cordova.mobilesdk": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
     },
-    "config_munge": {
-        "files": {}
+    "com.paypal.cordova.mobilesdk": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
     },
-    "installed_plugins": {
-        "cordova-plugin-ionic-webview": {
-            "PACKAGE_NAME": "com.geotap.aviculturaderaza"
-        },
-        "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.geotap.aviculturaderaza"
-        }
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
     },
-    "dependent_plugins": {}
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "com.geotap.aviculturaderaza"
+    }
+  }
 }

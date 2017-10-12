@@ -27,7 +27,9 @@ export class TabsPage {
   cartTabBage: number = 0;
   mySelectedIndex: any;
   constructor(public navCtrl: NavController, navParams: NavParams, public tb: TbarService, public storage: Storage) {
-    this.mySelectedIndex = navParams.data.tabIndex || 0;
+    console.log(navParams.data);
+    this.mySelectedIndex = navParams.data != null ? navParams.data : 0;
+    console.log(this.mySelectedIndex);
   }
 
   ionViewDidEnter() {

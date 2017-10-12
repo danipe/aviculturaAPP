@@ -116,7 +116,7 @@ import { CardIO } from 'ionic-native';
     ThanksPage,
     CartTabPage, StripePayPage, AttributePage
   ],
-  providers: [WoocommerceService, AppConfig, CountryService, TbarService, UserService, SowService,CardIO]
+  providers: [WoocommerceService, AppConfig, CountryService, TbarService, UserService, SowService, CardIO]
 })
 export class AppModule { }
 

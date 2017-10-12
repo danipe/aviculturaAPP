@@ -37,6 +37,9 @@ export class WishlistPage {
       this.loadingModal = this.loadingCtrl.create({
         content: value['Loading']
       });
+      setTimeout(() => {
+        this.loadingModal.dismiss();
+      }, 5000);
       this.loadingModal.present();
       this.storage.get('oddwolves-wishlist').then((data) => {
         if (data) {
@@ -100,32 +103,4 @@ export class WishlistPage {
     this.wishlistProduct.splice(findIndex, 1);
     this.storage.set('oddwolves-wishlist', JSON.stringify(this.wishlistProduct));
   }
-
-
-  share(product) {
-    this.translateService.get(['Notice', 'Loading', 'NetWork_Error', 'OK', 'Share_Success', 'Share_Fail']).subscribe(value => {
-      this.loadingModal = this.loadingCtrl.create({
-        content: value['Loading']
-      });
-      this.loadingModal.present();
-
-      SocialSharing.share("Mira la revista tan genial de Avicultura de raza:  " + this.product.name + " por solo " + this.product.price + "€, para más detalles click en el link.",
-        this.product.name, null, this.product.permalink).then(() => {
-          this.loadingModal.dismiss();
-          this.alertCtrl.create({
-            title: value['Notice'],
-            message: value['Share_Success'],
-            buttons: [value['OK']]
-          }).present();
-        }).catch(() => {
-          this.loadingModal.dismiss();
-          this.alertCtrl.create({
-            title: value['Notice'],
-            message: value['Share_Fail'],
-            buttons: [value['OK']]
-          }).present();
-        });
-    });
-  }
-
 }

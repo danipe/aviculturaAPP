@@ -10,7 +10,7 @@
         "spec": ">=2.0.10 <2.1.0",
         "type": "range"
       },
-      "/Users/sergiomoreno/aviculturaAPP/node_modules"
+      "/Users/sergiomoreno/aviculturaAPP"
     ]
   ],
   "_from": "onesignal-cordova-plugin@>=2.0.10 <2.1.0",
@@ -45,7 +45,7 @@
   "_shasum": "0ff9842ba7f3d8576717acd346148e69ea1f0372",
   "_shrinkwrap": null,
   "_spec": "onesignal-cordova-plugin@~2.0.10",
-  "_where": "/Users/sergiomoreno/aviculturaAPP/node_modules",
+  "_where": "/Users/sergiomoreno/aviculturaAPP",
   "author": {
     "name": "Josh Kasten"
   },
