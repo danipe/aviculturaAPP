@@ -56,11 +56,11 @@ export class MyApp {
 
       this.storage.get('sliderPage').then((result) => {
         if(result){
-          this.rootPage = SliderPage;
+          this.rootPage = TabsPage;
           //this.rootPage = SliderPage;
         } else {
           this.rootPage = SliderPage;
-          this.storage.set('sliderPage',false);
+          this.storage.set('sliderPage',true);
         }
       });
 
